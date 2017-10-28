@@ -1,0 +1,61 @@
+.widefat {width: auto;}
+.widefat td, .widefat th
+{
+	color:#2a2a2a !important;
+}
+.ss-list-width {min-width:10%}
+.ss-form-width {width:100%}
+.ss-th-width {width:25%}
+.ss-field-width {width:75%}
+
+.ListinTable th
+{
+	 border-bottom: 1px solid #e1e1e1;
+	 background-color:#FFF;
+	color:#0073AA;
+	
+}
+.ListinTable td{
+	line-height:30px;
+	
+}
+.AddTable input[type="text"]{
+background-color: #fff;
+    font-size: 1.1em;
+    height:35px;
+    line-height: 100%;
+    margin: 0 0 3px;
+    outline: 0 none;
+    padding: 3px 8px;
+    width: 35%;
+}
+
+.AddTable input[type="select"]{ font-size: 14px;
+    margin: 0 10px 0 0;
+}
+ 
+.AddTable td.heading{
+	 font-weight:700;
+}
+
+.salePrice{
+	font-size:14px;
+	color:#0073aa;
+}
+.error
+{
+	width:97%;float:left;
+	 text-align:center;
+	 color:red;
+	 line-height:30px;
+}
+
+.show-entries {
+	font-size:13px;
+	float:left;
+	width:30%;
+}
+
+.NewTable td, .NewTable th{
+	color:#333 !important;
+}
