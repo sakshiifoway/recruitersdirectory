@@ -36,7 +36,7 @@ include "../../../wp-load.php";
 			  <td class="manage-column ss-list-width"><a href="'.admin_url('admin.php?page=candidates&flag=candidate-profile&id=' . $row->id).'">'.$row->name.'</a></td>
 			  <td class="manage-column ss-list-width">'.$row->email.'</td>
 			  <td class="manage-column ss-list-width">'.GetOneValue("recruiter","rid",$row->rid,"firmname").'</td>
-			  <td><a href="#">Recruiter Profile</a></td>
+			  <td><a href="'.admin_url('admin.php?page=candidates&flag=recruiter-profile&rid=' . $row->rid).'">Recruiter Profile</a></td>
 			</tr>
 			';
 		}

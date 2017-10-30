@@ -32,7 +32,7 @@ background-color: #fff;
 
 .AddTable input[type="select"]{ font-size: 14px;
     margin: 0 10px 0 0;
-}
+ }
  
 .AddTable td.heading{
 	 font-weight:700;
@@ -50,11 +50,55 @@ background-color: #fff;
 	 line-height:30px;
 }
 
+/* pagination classes  */
+.thumb-pagination { margin-top:10px; }
+.CRM_pagination {
+	float:right;
+	width:auto;
+	text-align:right;
+}
+.CRM_pagination ul {
+	width:100%;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.CRM_pagination ul li { width:auto; float:left;	margin-right:6px; }
+.CRM_pagination ul li a {
+	float:left;
+	list-style:none;
+	padding:5px 12px;
+	border-radius:5px;
+	font-size:13px;
+	background: #fff none repeat scroll 0 0;
+    border-color: #ddd;
+    color: #444;
+	text-decoration:none;
+	cursor:pointer;
+}
+.CRM_pagination ul li.active, .CRM_pagination ul li.active a {
+	background: #0073AA none repeat scroll 0 0;
+    border-color: #0073AA;
+    box-shadow: none;
+    color: #fff;
+	border-radius:5px;	
+	float:left;
+	border-radius:5px;
+	font-size:13px;
+}
+
+.CRM_pagination ul li a.paging_cls:hover {
+	background: #0073AA none repeat scroll 0 0;
+    border-color: #0073AA;
+    box-shadow: none;
+    color: #fff;
+}
 .show-entries {
 	font-size:13px;
 	float:left;
 	width:30%;
 }
+
 
 .NewTable td, .NewTable th{
 	color:#333 !important;

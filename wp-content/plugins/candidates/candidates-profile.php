@@ -8,6 +8,8 @@
 	$row_candidate = $wpdb->get_results($sel_candidate);	
 	// echo $product_id;
 ?>
+<link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>/dealer-sales/style-admin.css" rel="stylesheet" />
+<script type='text/javascript' src='<?php echo WP_PLUGIN_URL; ?>/dealer-sales/validation.js'></script>
 <div class="wrap">
   <h1 class="wp-heading-inline"><?php echo $page_flag;?> Candidate Profile</h1>
  

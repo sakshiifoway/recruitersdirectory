@@ -3,7 +3,17 @@
 function candidates_list() {
 	
 	$pageflag = $_REQUEST['flag'];
-
-	include "candidates-list.php"; ///
 	
+	if($pageflag == "candidate-profile")
+	{
+		include "candidates-profile.php";//
+	}
+	else if($pageflag == "recruiter-profile")
+	{
+		include "recruiter-profile.php"; ///
+	}
+	else
+	{ 
+		include "candidates-list.php"; ///
+	}
 }
