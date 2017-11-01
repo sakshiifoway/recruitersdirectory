@@ -161,6 +161,79 @@ CREATE TABLE `candidate` (
   `attfile` varchar(200) NOT NULL DEFAULT ''
 )
 
+CREATE TABLE `recruiter` (
+  `rid` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL DEFAULT '',
+  `password` varchar(200) NOT NULL DEFAULT '',
+  `firmname` varchar(150) NOT NULL DEFAULT '',
+  `keyword` varchar(150) NOT NULL DEFAULT '',
+  `category` varchar(250) NOT NULL DEFAULT '',
+  `type` varchar(250) NOT NULL DEFAULT '',
+  `add1` varchar(200) NOT NULL DEFAULT '',
+  `add2` varchar(200) NOT NULL DEFAULT '',
+  `city` varchar(150) NOT NULL DEFAULT '',
+  `state` varchar(250) NOT NULL DEFAULT '',
+  `country` varchar(150) NOT NULL DEFAULT '',
+  `zip` varchar(150) NOT NULL DEFAULT '',
+  `phone` varchar(150) NOT NULL DEFAULT '',
+  `email` varchar(150) NOT NULL DEFAULT '',
+  `contact` varchar(150) NOT NULL DEFAULT '',
+  `website` varchar(200) NOT NULL DEFAULT '',
+  `logo` text NOT NULL,
+  `estdate` varchar(10) NOT NULL DEFAULT '',
+  `biography` text NOT NULL,
+  `rdate` date NOT NULL DEFAULT '0000-00-00',
+  `aprove` varchar(10) NOT NULL DEFAULT 'NO',
+  `raprove` varchar(10) NOT NULL DEFAULT 'NO',
+  `signature` text NOT NULL,
+  `rank` int(10) NOT NULL DEFAULT '9999',
+  `status` char(1) NOT NULL DEFAULT 'N',
+  `resumeopt` char(1) NOT NULL DEFAULT '',
+  `client1` varchar(200) NOT NULL DEFAULT '',
+  `client2` varchar(200) NOT NULL DEFAULT '',
+  `client3` varchar(200) NOT NULL DEFAULT '',
+  `client4` varchar(200) NOT NULL DEFAULT '',
+  `client5` varchar(200) NOT NULL DEFAULT '',
+  `client6` varchar(200) NOT NULL DEFAULT '',
+  `client7` varchar(200) NOT NULL DEFAULT '',
+  `client8` varchar(200) NOT NULL DEFAULT '',
+  `client9` varchar(200) NOT NULL DEFAULT '',
+  `client10` varchar(200) NOT NULL DEFAULT '',
+  `member1` varchar(200) NOT NULL DEFAULT '',
+  `membio1` text NOT NULL,
+  `member2` varchar(200) NOT NULL DEFAULT '',
+  `membio2` text NOT NULL,
+  `member3` varchar(200) NOT NULL DEFAULT '',
+  `membio3` text NOT NULL,
+  `member4` varchar(200) NOT NULL DEFAULT '',
+  `membio4` text NOT NULL,
+  `paid_status` char(1) DEFAULT NULL,
+  `referral_register` char(1) DEFAULT NULL,
+  `pay_by` varchar(255) DEFAULT NULL,
+  `cc_type` varchar(255) DEFAULT NULL,
+  `cc_no` varchar(20) DEFAULT NULL,
+  `exp_mon` char(2) DEFAULT NULL,
+  `exp_year` varchar(4) DEFAULT NULL,
+  `cc_owner` varchar(255) DEFAULT NULL,
+  `next_payment_date` datetime DEFAULT NULL,
+  `auth_inv_no` varchar(255) DEFAULT NULL,
+  `active_status` char(1) DEFAULT NULL,
+  `select_payment_plan` varchar(10) DEFAULT NULL,
+  `new_old` varchar(10) DEFAULT NULL,
+  `membership_no` int(11) DEFAULT NULL
+);
+
+ALTER TABLE `recruiter`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `recruiter`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `aprove` (`aprove`),
+  ADD KEY `country` (`country`),
+  ADD KEY `state` (`state`),
+  ADD KEY `category` (`category`),
+  ADD KEY `type` (`type`);
+
 ALTER TABLE `country`
   ADD PRIMARY KEY (`id`);
 
