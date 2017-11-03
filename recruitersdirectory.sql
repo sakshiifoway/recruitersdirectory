@@ -223,6 +223,20 @@ CREATE TABLE `recruiter` (
   `membership_no` int(11) DEFAULT NULL
 );
 
+CREATE TABLE `association_directory` (
+  `id` int(11) NOT NULL,
+  `association` varchar(255) DEFAULT NULL,
+  `specialty` varchar(50) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `link_url` varchar(100) DEFAULT NULL
+) 
+
+ALTER TABLE `association_directory`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `association_directory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+    
 ALTER TABLE `recruiter`
   MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
 
