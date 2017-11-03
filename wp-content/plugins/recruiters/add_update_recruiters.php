@@ -8,7 +8,188 @@ function add_update_recruiters()
 
 	include "function_img.php";
 
-	if (isset($_POST['submit'])) {}
+	if (isset($_POST['submit'])) {
+		
+		//print_r($_REQUEST);exit;
+		foreach ($_POST as $key => $val)
+		{
+			if($key == "state" || $key == "type" || $key == "category") {}
+			else
+			{
+				$$key = addslashes(trim($val)); 
+			}
+		}
+		if($rid != '')
+			$qry = " and rid != '".$rid."'";
+			
+		$check_email = $wpdb->get_results("SELECT * from $table_name where email = '".$email."' $qry");
+		$check_email_cnt = $wpdb->num_rows;
+		
+		if($check_email_cnt > 0)
+		{
+			$email = "";
+			$email_msg="Email is already registered";
+		}
+		else
+		{
+			if($resumeopt=="Y")
+				$resumeopt="Y";
+			else
+				$resumeopt="N";
+			
+			if($_REQUEST['state'] != "")
+				$statelist = implode(",",$_REQUEST['state']);
+			else
+				$statelist = "";
+			if($_REQUEST['category'] != "")
+				$categorylist = implode(",",$_REQUEST['category']);
+			else
+				$categorylist = "";
+			if($_REQUEST['type'] != "")
+				$typelist = implode(",",$_REQUEST['type']);
+			else
+				$typelist = "";
+			
+			if($_FILES["logo"]["name"]	 != ''){
+				$image_path = rand().trim($_FILES["logo"]["name"]); 
+				$image_path = imageReplace($image_path);
+				copy($_FILES["logo"]["tmp_name"],"../wp-content/themes/".THEMESLUG."/recruiterlogo/".$image_path);
+				new imageresize("../wp-content/themes/".THEMESLUG."/recruiterlogo/".$image_path,"../wp-content/themes/".THEMESLUG."/recruiterlogo/thumb_".$image_path,300,230);
+				if(file_exists("../wp-content/themes/".THEMESLUG."/recruiterlogo/".$_REQUEST['imgHidn']) && $rid>0 ){
+					unlink("../wp-content/themes/".THEMESLUG."/recruiterlogo/".$_REQUEST['imgHidn']);
+					unlink("../wp-content/themes/".THEMESLUG."/recruiterlogo/thumb_".$_REQUEST['imgHidn']);
+				}			
+				$img = " , logo = '".$image_path."'";
+			  }
+			//  echo $img;exit;
+			if ($_POST['rid']>0) {
+				$update = "UPDATE $table_name set
+								firmname = '".$firmname."',
+								keyword = '".$keyword."',
+								category = '".$categorylist."',
+								type = '".$typelist."',
+								add1 = '".$add1."',
+								add2 = '".$add2."',
+								city = '".$city."',
+								state = '".$statelist."',
+								country = '".$country."',
+								zip = '".$zip."',
+								phone = '".$phone."',
+								email = '".$email."',
+								contact = '".$contact."',
+								estdate = '".$estdate."',
+								biography = '".$biography."',
+								resumeopt = '".$resumeopt."',
+								client1 = '".$client1."',
+								client2 = '".$client2."',
+								client3 = '".$client3."',
+								client4 = '".$client4."',
+								client5 = '".$client5."',
+								client6 = '".$client6."',
+								client7 = '".$client7."',
+								client8 = '".$client8."',
+								client9 = '".$client9."',
+								client10 = '".$client10."',
+								member1 = '".$member1."',
+								membio1 = '".$membio1."',
+								member2 = '".$member2."',
+								membio2 = '".$membio2."',
+								member3 = '".$member3."',
+								membio3 = '".$membio3."',
+								member4 = '".$member4."',
+								membio4 = '".$membio4."'
+								$img
+							WHERE rid = '".$rid."'";
+				$wpdb->query($update);
+				$message = "Recruiter Detail updated successfully.";
+			}
+			else {
+				$insert = "INSERT INTO $table_name set
+								firmname = '".$firmname."',
+								keyword = '".$keyword."',
+								category = '".$categorylist."',
+								type = '".$typelist."',
+								add1 = '".$add1."',
+								add2 = '".$add2."',
+								city = '".$city."',
+								state = '".$statelist."',
+								country = '".$country."',
+								zip = '".$zip."',
+								phone = '".$phone."',
+								email = '".$email."',
+								contact = '".$contact."',
+								estdate = '".$estdate."',
+								biography = '".$biography."',
+								rdate = '".date('Y-m-d')."',
+								aprove = '".$aprove."',
+								status = 'Y',
+								resumeopt = '".$resumeopt."',
+								client1 = '".$client1."',
+								client2 = '".$client2."',
+								client3 = '".$client3."',
+								client4 = '".$client4."',
+								client5 = '".$client5."',
+								client6 = '".$client6."',
+								client7 = '".$client7."',
+								client8 = '".$client8."',
+								client9 = '".$client9."',
+								client10 = '".$client10."',
+								member1 = '".$member1."',
+								membio1 = '".$membio1."',
+								member2 = '".$member2."',
+								membio2 = '".$membio2."',
+								member3 = '".$member3."',
+								membio3 = '".$membio3."',
+								member4 = '".$member4."',
+								membio4 = '".$membio4."'
+								$img";
+				//echo $insert;//exit;
+				$wpdb->query($insert);
+				$message ="inserted";
+				//exit;
+				
+				$query_mail = "SELECT * from mail_content where id = 1";
+				$rows_mail = $wpdb->get_results($query_mail);
+				$mailagr=$rows_mail[0]->content1;
+								
+				$mail_patterns = array();
+				$mail_patterns[0] = '/\n/';
+				$mail_replacements = array();
+				$mail_replacements[0] = '<BR>';
+				$mailagree=preg_replace($mail_patterns, $mail_replacements, $mailagr);
+				
+				$to=$email;
+				$from=get_option('admin_email');
+				$subject="OnlineRecruitersDirectory Agreement!";
+				
+				$mailcontent="				
+					<table border=\"0\" align=\"center\" cellspacing=\"0\" cellpadding=\"0\" >
+						<tr>
+						  <td width=\"5%\">&nbsp;</td>
+						  <td height=30 align=\"left\" colspan=\"2\">
+							<font face=\"Verdana, Arial, Helvetica, sans-serif\" size=\"3\" color=\"#000099\"><b>Agreement :</b></font>
+						  </td>
+						  <td width=\"5%\">&nbsp;</td>
+						</tr>
+						<tr>
+						  <td width=\"5%\">&nbsp;</td>
+						  <td height=30 align=\"left\" colspan=\"2\">
+								<font face=\"Verdana, Arial, Helvetica, sans-serif\" size=\"2\">
+								$mailagree
+								</font>
+						  </td>
+						  <td width=\"5%\">&nbsp;</td>
+						</tr>
+					</table>
+				";
+				
+			//	SendHTMLMail1($to,$subject,$mailcontent,$from);
+								
+			//echo $mailcontent;exit;
+				echo "<script>window.location.href='admin.php?page=manage_recruiters&msg=$message'</script>";
+			}
+		}
+	}
 	
 	if($rid)
 	{

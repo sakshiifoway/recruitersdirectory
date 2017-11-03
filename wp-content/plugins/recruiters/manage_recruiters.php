@@ -5,7 +5,32 @@ function manage_recruiters() {
 	$table_name = 'recruiter';
 	
 	$query = "SELECT * from $table_name where rid>0";	
+	if ($_REQUEST['did']!='')
+	{
+		$wpdb->query("DELETE FROM $table_name where rid='".$_REQUEST['did']."'");
+		echo "<script>window.location.href='admin.php?page=manage_recruiters&msg=deleted'</script>";
+	}
 	
+	if(isset($_REQUEST['search']))
+	{
+		$searchCountry = $_REQUEST['searchCountry'];
+		$searchCategory = $_REQUEST['searchCategory'];
+		$searchApprove = $_REQUEST['searchApprove'];
+		
+		if($searchCountry)
+		{
+			$query .= " and country = '".$searchCountry."'";
+		}
+		if($searchCategory)
+		{
+			//$query .= " and category = '".$searchCategory."'";
+			$query .= " and FIND_IN_SET ('".$searchCategory."',category) >0";
+		}
+		if($searchApprove)
+		{
+			$query .= " and (aprove = '".$searchApprove."')";
+		}
+	}
 	$query .= " order by recruiter.rdate desc,firmname";
 	
 	$rows = $wpdb->get_results($query);
@@ -18,7 +43,51 @@ function manage_recruiters() {
         </h1>
         <?php if ($_REQUEST['msg'] != ""): ?><div class="updated"><p>Recruiter <?php echo $_REQUEST['msg']; ?> successfully.</p></div><?php endif; ?>
         
-        
+        <form name="searchFrm" method="POST">
+            <div class="tablenav top" style="border-bottom:1px solid #ccc; padding:10px; margin-bottom:10px;">
+                <div class="alignleft actions">
+                	<div>
+                        <label>Country </label>
+                        <select name="searchCountry" id="searchCountry">
+                            <option value="">Select</option>
+                            <?php
+                                $countries = $wpdb->get_results("select country.* from country,recruiter where country.id=recruiter.country group by country.name ASC");
+                                foreach ($countries as $countries_new) { 
+									if($_REQUEST['searchCountry'] == $countries_new->id) { $country_sel = "selected"; }
+									else { $country_sel = ""; }
+                            ?>
+                            <option value="<?php echo $countries_new->id; ?>" <?php echo $country_sel; ?>><?php echo $countries_new->name; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Category </label>
+                        <select name="searchCategory" id="searchCategory" class="searchText">
+                        	<option value="">Select</option>
+                            <?php
+								$categories = $wpdb->get_results("SELECT * from category order by categoryname ASC");
+								foreach ($categories as $categories_new) { 
+									if($_REQUEST['searchCategory'] == $categories_new->categoryid) { $category_sel = "selected"; }
+									else { $category_sel = ""; }
+							?>
+							<option value="<?php echo $categories_new->categoryid; ?>" <?php echo $category_sel; ?>><?php echo $categories_new->categoryname; ?></option>
+							<?php } ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Approve </label>
+                        <select name="searchApprove" id="searchApprove" class="searchText">
+                        	<option value="">Select</option>
+							<option value="YES" <?php if($_REQUEST['searchApprove'] == "YES") { echo "selected"; } ?>>YES</option>
+							<option value="NO" <?php if($_REQUEST['searchApprove'] == "NO") { echo "selected"; } ?>>NO</option>
+                        </select>
+                    </div>
+                    <input type="submit" name="search" value="Search" class="button-primary">
+                    <input type="button" name="clear" value="Clear" class="button-primary" onclick="window.location='admin.php?page=manage_recruiters'" />
+                </div>
+                <br class="clear">
+        	</div>
+        </form>
         <?php if(count($rows)>0) { ?>
         <table class='wp-list-table widefat fixed striped posts'>
         	<thead>
