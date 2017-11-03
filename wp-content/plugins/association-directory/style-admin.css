@@ -1,0 +1,71 @@
+.widefat {width: auto;}
+.ss-list-width {min-width:10%}
+.ss-form-width {width:100%}
+.ss-th-width {width:15%; font-weight:bold; }
+.ss-field-width {width:50%}
+.error, .red { color:red; }
+.updated { color:green; }
+.norecord { width:100%; float:left; color:red; font-size:14px; text-align:center; }
+
+.wp-list-table { width:100%;}
+.ss-list-width-first {min-width:5%}
+th.manage-column { color:#0073aa !important; }
+.alignleft div { float:left; margin-right:15px; } 
+.alignleft select { float:none !important; } 
+.tablenav { margin: 6px 0 12px; }
+.wp-list-table input[type="text"], .wp-list-table select { height:30px; }
+.wp-list-table input[type="text"], .wp-list-table select, .wp-list-table textarea  { width: 300px; }
+.searchText { width:200px; height:28px !important; margin-left:10px; margin-right:20px !important; }
+.wp-heading-inline { margin-bottom:20px !important; }
+
+.thumb-pagination { margin-top:10px; }
+.CRM_pagination {
+	float:right;
+	width:auto;
+	text-align:right;
+}
+.CRM_pagination ul {
+	width:100%;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.CRM_pagination ul li { width:auto; float:left;	margin-right:6px; }
+.CRM_pagination ul li a {
+	float:left;
+	list-style:none;
+	padding:5px 12px;
+	border-radius:5px;
+	font-size:13px;
+	background: #fff none repeat scroll 0 0;
+    border-color: #ddd;
+    color: #444;
+	text-decoration:none;
+	cursor:pointer;
+}
+.CRM_pagination ul li.active, .CRM_pagination ul li.active a {
+	background: #0073AA none repeat scroll 0 0;
+    border-color: #0073AA;
+    box-shadow: none;
+    color: #fff;
+	border-radius:5px;	
+	float:left;
+	border-radius:5px;
+	font-size:13px;
+}
+
+.CRM_pagination ul li a.paging_cls:hover {
+	background: #0073AA none repeat scroll 0 0;
+    border-color: #0073AA;
+    box-shadow: none;
+    color: #fff;
+}
+.show-entries {
+	font-size:13px;
+	float:left;
+	width:30%;
+}
+.AddTable { box-shadow: none !important; }
+.TDHeading { background:#E9F3FC; font-size:15px !important; font-weight:bold; }
+.mt-td-width {width:10%; font-weight:bold; }
+.mt-td-width-2 {width:16%; }
