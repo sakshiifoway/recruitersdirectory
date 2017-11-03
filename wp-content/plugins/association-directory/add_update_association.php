@@ -24,6 +24,7 @@ function add_update_association()
 			$message = "Association Detail updated successfully.";
 		}
 		else {
+			// insert into table
 			$insert = "INSERT INTO $table_name set
 							association = '".$association."',
 							specialty = '".$specialty."',
