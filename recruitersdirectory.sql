@@ -231,6 +231,24 @@ CREATE TABLE `association_directory` (
   `link_url` varchar(100) DEFAULT NULL
 ) 
 
+CREATE TABLE `company` (
+  `compid` int(10) NOT NULL,
+  `rid` int(10) NOT NULL DEFAULT '0',
+  `rdate` date NOT NULL DEFAULT '0000-00-00',
+  `company_name` varchar(150) DEFAULT NULL,
+  `name` varchar(200) NOT NULL DEFAULT '',
+  `phone` varchar(50) NOT NULL DEFAULT '',
+  `email` varchar(200) NOT NULL DEFAULT '',
+  `message` text NOT NULL,
+  `aprove` varchar(10) NOT NULL DEFAULT 'NO'
+)
+
+ALTER TABLE `company`
+  ADD UNIQUE KEY `id` (`compid`);
+
+ALTER TABLE `company`
+  MODIFY `compid` int(10) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `association_directory`
   ADD PRIMARY KEY (`id`);
   
