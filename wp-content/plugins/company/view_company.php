@@ -43,7 +43,7 @@ if($id)
 					</tr>
 					<tr>
 						<td class="ss-th-width">Recruiter Name</td>
-						<td><?php echo $recruiter_name; ?></td>
+						<td><a href="admin.php?page=manage_company&flag=recruiter-profile&cid=<?php echo $compid; ?>&rid=<?php echo $rid; ?>"><?php echo $recruiter_name; ?></a></td>
 					</tr>
 				</table>
 			</td>

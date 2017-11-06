@@ -22,6 +22,61 @@ if($flag == "ApproveCompany")
 	$update = "update company set aprove = '".$changeVal."' where compid = '".$id."'";	
 	$wpdb->query($update);
 	
+	if($changeVal=="YES")
+	{
+		$patterns = array();
+		$patterns[0] = '/\n/';
+		$replacements = array();
+		$replacements[0] = '<br>';
+		$msg=preg_replace($patterns, $replacements, $message);
+		
+		$recruiter_detail = $wpdb->get_results("SELECT * from recruiter where rid='".$rid."'");
+		$remail = $recruiter_detail[0]->email;
+			
+		$to=$remail;
+		$from=$cemail;
+		$subject="I found you in the Online Recruiters Directory";
+		$mailcontent="		 
+			 <TABLE cellSpacing=2 cellPadding=2 width=100% border=0>
+					<TR> 
+					<TD vAlign=top noWrap class=f-b colspan=2>Below is a message from a job seeker who found your firm in the Online Recruiters Directory.</TD>
+					</TR>
+					<TR> 
+					<TD width=\"22%\" align=right vAlign=top noWrap class=f-b>Name:&nbsp;</TD>
+					<TD width=\"78%\" nowrap class=f-d><b> 
+					   $name
+					  </b></TD>
+					</TR>
+						  <TR> 
+					<TD width=\"22%\" align=right vAlign=top noWrap class=f-b>E-mail:</TD>
+					<TD width=\"78%\" nowrap class=f-d> 
+					   $cemail
+					  </TD>
+					</TR>
+						  <TR> 
+					<TD width=\"22%\" align=right vAlign=top noWrap class=f-b>Phone:</TD>
+					<TD width=\"78%\" nowrap class=f-d> 
+					  $phone
+					  </TD>
+					</TR>
+							  
+				  <TR> 
+					<TD width=\"22%\" align=right vAlign=top noWrap class=f-b >Message:</TD>
+					<TD width=\"78%\" class=f-d valign=\"top\"> 
+						$msg
+					  </TD>
+				  </TR>
+				  <TR> 
+					<TD vAlign=top noWrap class=f-b colspan=2>&nbsp;</TD>
+					</TR>
+				  <TR> 
+					<TD vAlign=top noWrap class=f-b colspan=2>Thank you for using the Online Recruiters Directory.</TD>
+				  </TR>
+				 </table>
+		";
+	// echo $mailcontent;exit;
+		// SendHTMLMail1($to,$subject,$mailcontent,$from);
+	}
 	echo $changeVal;
 }
 
@@ -31,6 +86,9 @@ if($flag == "paging")
 	$QueryString = stripslashes($_REQUEST['QueryString']);
 	
 	$perPage = 20;
+	
+	//$QueryString1 = $QueryString." limit 0,42000"; //42600
+	//$listing_details1 = $wpdb->get_results($QueryString1);
 	
 	$listing_details1 = $wpdb->get_results($QueryString);
 	
@@ -70,6 +128,7 @@ if($flag == "paging")
 			else $chkd = "";
 			
 			$view_url = admin_url('admin.php?page=manage_company&flag=view_company&id='.$compid);
+			$recruiter_url = admin_url('admin.php?page=manage_company&flag=recruiter-profile&rid='.$rid);
 			
 			$outputTable .= '
 			<tr>
@@ -81,7 +140,10 @@ if($flag == "paging")
 				<td class="manage-column ss-list-width">'.$name.'</td>
 				<td class="manage-column ss-list-width">'.$email.'</td>
 				<td class="manage-column ss-list-width">'.$phone.'</td>
-				<td class="manage-column ss-list-width">'.$recruiter_name.'</td>
+				<td class="manage-column ss-list-width"><a href="'.$recruiter_url.'">'.$recruiter_name.'</a></td>
+				<td style="text-align:center;">
+					<input type="checkbox" class="deletechk" name="deletechk[]" value="'.$compid.'" onchange="jQuery(\'#deleteall\').prop(\'checked\',false);">
+				</td>
          	</tr>
 			';
 		}
@@ -185,4 +247,5 @@ if($flag == "paging")
 	
 	echo  $outputTable."@@@###@@@".$output;
 }
+
 ?>
