@@ -1,0 +1,170 @@
+.control-group {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;  
+  padding:0px;
+  width: 100%;
+  margin:0px;  
+}
+.control {
+  display: block;
+  position: relative;
+  padding:0px 0px 0px 44px;
+  margin:0px;	
+  cursor: pointer;
+  font-size: 14px;
+  border:1px solid #36a199;
+  height:40px;
+  line-height:40px;
+  border-radius:50px;
+  color:#03363c;
+  font-weight:700;
+  letter-spacing:1px;
+  background: #40b6ab; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #40b6ab 0%, #5ec3b9 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #40b6ab 0%,#5ec3b9 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #40b6ab 0%,#5ec3b9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40b6ab', endColorstr='#5ec3b9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.control:hover, .control:focus{
+  background: #5ec3b9; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #5ec3b9 0%, #40b6ab 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #5ec3b9 0%,#40b6ab 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #5ec3b9 0%,#40b6ab 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ec3b9', endColorstr='#40b6ab',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+.control img{ width:auto; height:auto; float:left; padding:5px 0px 0px 6px;}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  height: 32px;
+  width: 32px;
+  background: #fff;
+  border-radius:100%;
+}
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #fff;
+}
+.control input:checked ~ .control__indicator {
+  background: #fff;
+}
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: #fff;
+}
+.control input:disabled ~ .control__indicator {
+  background: #fff;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.control--checkbox .control__indicator:after {
+  left: 12px;
+  top: 8px;
+  width: 8px;
+  height: 14px;
+  border: solid #3cb5aa;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+
+
+
+.main-banner .search-part .search-form ul li .job-seeker-check .control {
+  display: block;
+  position: relative;
+  padding:0px 0px 0px 44px;
+  margin:0px;	
+  cursor: pointer;
+  font-size: 14px;
+  border:1px solid #ffcba0;
+  height:40px;
+  line-height:40px;
+  border-radius:50px;
+  color:#ff8355;
+  font-weight:700;
+  letter-spacing:1px;
+  background: #ffcca1; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #ffcca1 0%, #ffd6b2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #ffcca1 0%,#ffd6b2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #ffcca1 0%,#ffd6b2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffcca1', endColorstr='#ffd6b2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control:hover, .main-banner .search-part .search-form ul li .job-seeker-check .control:focus{
+  background: #ffd6b2; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #ffd6b2 0%, #ffcca1 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #ffd6b2 0%,#ffcca1 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #ffd6b2 0%,#ffcca1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd6b2', endColorstr='#ffcca1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control img{ width:auto; height:auto; float:left; padding:5px 0px 0px 6px;}
+.main-banner .search-part .search-form ul li .job-seeker-check .control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control__indicator {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  height: 32px;
+  width: 32px;
+  background: #fff;
+  border-radius:100%;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control--radio .control__indicator {
+  border-radius: 50%;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control:hover input ~ .control__indicator,
+.main-banner .search-part .search-form ul li .job-seeker-check .control input:focus ~ .control__indicator {
+  background: #fff;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control input:checked ~ .control__indicator {
+  background: #fff;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control:hover input:not([disabled]):checked ~ .control__indicator,
+.main-banner .search-part .search-form ul li .job-seeker-check .control input:checked:focus ~ .control__indicator {
+  background: #fff;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control input:disabled ~ .control__indicator {
+  background: #fff;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.main-banner .search-part .search-form ul li .job-seeker-check .control--checkbox .control__indicator:after {
+  left: 12px;
+  top: 8px;
+  width: 8px;
+  height: 14px;
+  border: solid #ff8355;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
