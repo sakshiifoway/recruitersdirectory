@@ -569,6 +569,15 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
 
+function GetOneValue($tablenm,$fval,$nextval,$getval)
+{
+	global $wpdb;
+	$selst1 = "select * from ".$tablenm." where ".$fval." = '".$nextval."'";
+	$rows = $wpdb->get_results($selst1);
+	$stnm = stripslashes($rows[0]->$getval);
+	return str_replace("\xc2\xa0",' ',$stnm);
+}
+
 function imageReplace($text)
 {
  $text=strtolower($text);
@@ -580,6 +589,27 @@ function imageReplace($text)
  return $text;
 }
 
+function SendHTMLMail1($to1,$subject2,$mailcontent1,$from1)
+{
+	require_once '/wwwroot/www.onlinerecruitersdirectory.com/PHPMailer-master/PHPMailerAutoload.php';
+	$mail = new PHPMailer;
+	$mail->isSMTP();
+	$mail->SMTPDebug = 0;
+	$mail->Host = "smtpout.secureserver.net";
+	$mail->Port = 80;
+	$mail->SMTPAuth = true;
+	$mail->Username = "mail@onlinerecruitersdirectory.com";
+	$mail->Password = "admin@123456";
+	//$mail->setFrom($from1,'onlinerecruitersdirectory');
+	$mail->setFrom($from1);
+    //$mail->addBCC('ajay@sakshiinfosys.com','ajay');
+	//$mail->addBCC($bcc);
+//	$mail->addBCC('gaurav@sakshiinfosys.com');
+	$mail->addAddress($to1);//'bharat@sakshiinfosys.com', 'John Doe'
+	$mail->Subject = $subject2;
+	$mail->msgHTML($mailcontent1);
+	return $mail->send();
+}
 
 function create_posttype() {
  
@@ -599,10 +629,54 @@ function create_posttype() {
 // Hooking up our function to theme setup
 add_action( 'init', 'create_posttype' );
 
+function partnerlogo_posttype() {
+ 
+    register_post_type( 'partnerlogo',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Partner Logo' ),
+                'singular_name' => __( 'Partner Logo' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'partnerlogo'),
+			'supports' => array( 'title', 'editor', 'thumbnail', 'custom-fields' )
+        )
+    );
+}
+
+
 // Hooking up our function to theme setup
 add_action( 'init', 'partnerlogo_posttype' );
 
 
+function GetRecruiterState($states,$rstate,$rid)
+{	
+	global $wpdb;
+	//
+	if(count($states)>0){
+		foreach($states as $stat)
+		{
+			$selst1 = "select * from recruiter where rid = '".$rid."' and FIND_IN_SET('".$stat."', state)";
+			$rows = $wpdb->get_results($selst1);
+			//print_r($rows);
+			//echo $rows[0]->state;
+			$stnm.= GetOneValue("state","id",$stat,"name").", ";
+		}
+	}else
+	{
+		$selst1 = "select * from recruiter where rid = '".$rid."'";
+		$rows = $wpdb->get_results($selst1);
+		$states = explode(',',$rows[0]->state);
+		//print_r($states);
+		foreach($states as $stt){
+			$stnm.= GetOneValue("state","id",$stt,"name").", ";
+		}
+	}
+	return substr($stnm,0,-2);
+	
+}
 
 function excerpt($limit) {
   $excerpt = explode(' ', get_the_excerpt(), $limit);
@@ -614,4 +688,23 @@ function excerpt($limit) {
   }	
   $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
   return $excerpt;
+}
+
+function get_excerpt_by_id($post_id,$ln){
+	// $the_excerpt ="";
+    $the_post = get_post($post_id); //Gets post ID
+    $the_excerpt = trim($the_post->post_content); //Gets post_content to be used as a basis for the excerpt
+    $excerpt_length = $ln; //Sets excerpt length by word count
+    $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
+    $words = explode(' ', $the_excerpt, $excerpt_length + 1);
+
+    if(count($words) > $excerpt_length) :
+        array_pop($words);
+        array_push($words, '…');
+        $the_excerpt = implode(' ', $words);
+    endif;
+
+    $the_excerpt = $the_excerpt;
+
+    return $the_excerpt;
 }

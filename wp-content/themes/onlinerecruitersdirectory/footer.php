@@ -14,6 +14,17 @@
 
 ?>
 
+<section class="ord-service-main">
+	<div class="container">
+    	<div class="coman-inner">
+    		<div class="ord-service">
+        	<h4>The Online Recruiters Directory is the place to find executive recruiters,<br>executive search firms, headhunters, staffing firms and other recruiting services.</h4>
+            <div class="hand-icon"><img src="<?php echo get_template_directory_uri(); ?>/images/hand-icon.png"/></div>
+        </div>
+        </div>
+    </div>
+</section>
+
 <footer>
 	<div class="container">
     	<div class="coman-inner">
@@ -21,11 +32,11 @@
         	<div class="col-sm-1 fl">
             	<h2>Home</h2>
                 <ul>
-                	<li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Add my firm</a></li>
-                    <li><a href="#">Terms of use</a></li>
-                    <li><a href="#">Report Abuse</a></li>
+                	<li><a href="<?php bloginfo( 'home' ); ?>/about/">About</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/contactus/">Contact</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/add_directory/">Add my firm</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/terms/">Terms of use</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/report_abuse/">Report Abuse</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 fl">
@@ -51,9 +62,9 @@
             <div class="col-sm-1 fl">
             	<h2>Info</h2>
                 <ul>
-                	<li><a href="#">Articles</a></li>
-                    <li><a href="#">Association Directory</a></li>
-                    <li><a href="#">Executive Recruiters</a></li>
+                	<li><a href="<?php bloginfo( 'home' ); ?>/articles/">Articles</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/associate/">Association Directory</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/post_request_for_recruiter/">Executive Recruiters</a></li>
                     <li><a href="#">Service providers</a></li>
                     <li><a href="#">Job of mine</a></li>
                 </ul>
@@ -69,9 +80,9 @@
                     	<a href="#">Share</a>
                         <div class="share-icon">
                         	<ul>
-                            	<li><a href="#"><img src="images/share-gplue-icon.png"/></a></li>
-                                <li><a href="#"><img src="images/share-twitter-icon.png"/></a></li>
-                                <li><a href="#"><img src="images/share-linkdin-icon.png"/></a></li>
+                            	<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-gplue-icon.png"/></a></li>
+                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-twitter-icon.png"/></a></li>
+                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-linkdin-icon.png"/></a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,7 +91,7 @@
             </div>
         </div>
         </div>
-    	<div class="copyright">&copy; Copyright 2018 online Recruiters Directory. All rights reserved. <span>Designed by <img src="images/opsilon-logo.png"/></span></div>
+    	<div class="copyright">&copy; Copyright 2018 online Recruiters Directory. All rights reserved. <span>Designed by <img src="<?php echo get_template_directory_uri(); ?>/images/opsilon-logo.png"/></span></div>
     </div>
 </footer>
 </div>

@@ -12,16 +12,24 @@
  * @version 1.0
  */
 
-get_header(); ?>
+get_header(); 
+// echo get_the_ID();
+$flds = get_fields(get_the_ID());
+$bannerImg = $flds['home_banner_image'];
+$bannerTxt = $flds['home_banner_text'];
+
+
+$flds2 = get_fields(286);
+//print_r($flds2); 
+
+?>
 <!--- Banner Start --->
 <div class="main-banner">
-	<img src="images/main-banner.jpg"/>
+	<img src="<?php echo $bannerImg;?>"/>
     <div class="banner-caption">
     	<div class="container">
         	<div class="caption-inner">
-            	<h6>Searching for Recruiters and Headhunters?</h6>
-                <h4>Find the most suitable<br>search firm for your needs</h4>
-                <h1>IN A SNAP</h1>
+            	<?php echo $bannerTxt;?>
             </div>
         </div>
         <div class="search-part">
@@ -58,7 +66,7 @@ get_header(); ?>
                             	<div class="checkbox-part">
                                 	<div class="hiring-manager-check">
                                     	<div class="control-group">    
-                                            <label class="control control--checkbox"><img src="images/hiring-manager-checkicon.png"/>I’M A HIRING MANAGER
+                                            <label class="control control--checkbox"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png"/>I’M A HIRING MANAGER
                                               <input type="checkbox" checked="checked"/>
                                               <div class="control__indicator"></div>
                                             </label>    
@@ -66,7 +74,7 @@ get_header(); ?>
                                     </div>
                                     <div class="job-seeker-check">
                                     	<div class="control-group">    
-                                            <label class="control control--checkbox"><img src="images/job-seeker-checkicon.png"/>I’M A JOB SEEKER
+                                            <label class="control control--checkbox"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png"/>I’M A JOB SEEKER
                                               <input type="checkbox" checked="checked"/>
                                               <div class="control__indicator"></div>
                                             </label>    
@@ -74,7 +82,7 @@ get_header(); ?>
                                     </div>
                                 </div>
                             </li>
-                            <li><button value="Go">Go<img src="images/go-arrow.png"/></button></li>
+                            <li><button value="Go">Go<img src="<?php echo get_template_directory_uri(); ?>/images/go-arrow.png"/></button></li>
                         </ul>
                     </div>
                 </div>
@@ -89,11 +97,11 @@ get_header(); ?>
 	<div class="container">
     	<div class="testimonial-inner">
         	<ul>
-            	<li><a class="database" href="#"><img src="images/right-arrow.png"/>Database of over 10,000 recruitment firms</a></li>
-                <li>“If a candidate is out there,<br>they will find him... ”<span class="client-name">Stuart Miller</span></li>
-                <li>“Simply put - <br>their methodology works... ”<span class="client-name">Robert Harris</span></li>
-                <li>“It's always <br>a perfect match... ”<span class="client-name">Amanda Wilson</span></li>
-                <li><a class="assisted" href="#"><img src="images/right-arrow.png"/>Assisted over 15,000 HiRing managers</a></li>
+            	<li><a class="database" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow.png"/><?php echo $flds2['wtu_line_1'];?></a></li>
+                <li><?php echo $flds2['wtu_line_3'];?></li>
+                <li><?php echo $flds2['wtu_line_4'];?></li>
+                <li><?php echo $flds2['wtu_line_5'];?></li>
+                <li><a class="assisted" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow.png"/><?php echo $flds2['wtu_line_2'];?></a></li>
             </ul>
         </div>
     </div>
@@ -102,18 +110,13 @@ get_header(); ?>
 <section>
 	<div class="container">
     	<div class="coman-inner">
-    		<div class="other-logo">
-        	<ul>
-            	<li><img src="images/logo-1.png"/></li>
-                <li><img src="images/logo-2.png"/></li>
-                <li><img src="images/logo-3.png"/></li>
-                <li><img src="images/logo-4.png"/></li>
-                <li><img src="images/logo-9.png"/></li>
-                <li><img src="images/logo-5.png"/></li>
-                <li><img src="images/logo-6.png"/></li>
-                <li><img src="images/logo-7.png"/></li>
-                <li><img src="images/logo-8.png"/></li>
-            </ul>
+    		<div class="other-logo"><ul>
+            <?php $args = array( 'post_type' => 'partnerlogo', 'posts_per_page' => 40,'orderby'   => 'menu_order','order' => 'DESC' );
+				$loop = new WP_Query( $args );
+				while ( $loop->have_posts() ) : $loop->the_post();				
+				?>        	
+            	<li><img src="<?php echo get_the_post_thumbnail_url($post->ID);?>" /></li>                         
+			<?php endwhile; ?> </ul>
         </div>
         </div>
     </div>
@@ -125,41 +128,48 @@ get_header(); ?>
             <ul>
                 <li>
                 	<div  class="recruiters">
-                    	<h3>Recruiters - New Mexico:<br> Albuquerque Reigns Supreme! </h3>
-                        <p>Albuquerque's unbeatable combination of breathtaking beauty, history, culture and economic incentive has made...</p>
+                    	
+                        <?php 
+						$recent_posts = wp_get_recent_posts(array(
+							'cat' => 98, // Number of recent posts thumbnails to display
+							'post_status' => 'publish' // Show only the published posts
+						)); ?>
+                        
+                        <h3><?php echo $recent_posts[0]['post_title'];?> </h3>
+                        <p><?php echo get_excerpt_by_id($recent_posts[0]['ID'],10); //echo get_excerpt($recent_posts[0]['ID']); ?><?php //echo get_the_excerpt($recent_posts[0]['ID']);?></p>
                         <div class="name-btn">
-                        <div class="name">By Elaine Boylan </div>
-                        <a href="#" class="button">Read more</a>
+                       <!-- <div class="name">By Elaine Boylan </div>-->
+                        <a href="<?php echo get_permalink($recent_posts[0]['ID']);?>" class="button">Read more</a>
                         </div>
                     </div>
                  </li>
                 <li>
                 	<div class="h-manager">
-                    	<h3 class="title"><span class="icon"></span>I’M A HIRING MANAGER</h3>
+                    	<h3 class="title"><span class="icon"></span>I'M A HIRING MANAGER</h3>
                         <ul>
-                        	<li><a href="#">Post a request for a Recruiter <span></span></a></li>
-                            <li><a href="#">Effectiveness Resume Screening <span></span></a></li>
-                            <li><a href="#">At your service -<br> recommandation on the best firms for you <span></span></a></li>
+                        	<li><a href="<?php bloginfo( 'home' ); ?>/post_request_for_recruiter/">Post a request for a Recruiter <span></span></a></li>
+                            <li><a href="<?php bloginfo( 'home' ); ?>/tips_effectiveness_resume/">Effectiveness Resume Screening <span></span></a></li>
+                            <li><a href="<?php bloginfo( 'home' ); ?>/your_service/">At your service -<br> recommandation on the best firms for you <span></span></a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
                 	<div class="job-seaker">
-                    	<h3 class="title"><span class="icon"></span>I’M A HIRING MANAGER</h3>
+                    	<h3 class="title"><span class="icon"></span>I'M A HIRING MANAGER</h3>
                         <ul>
-                        	<li><a href="#">Executive $100K job seekers<span></span></a></li>
-                            <li><a href="#">Free review of your resume<span></span></a></li>
-                            <li><a href="#">Job Boards & Recruiting services<span></span></a></li>
+                        	<li><a href="<?php bloginfo( 'home' ); ?>/executive_job_seekers/">Executive $100K job seekers<span></span></a></li>
+                            <li><a href="<?php bloginfo( 'home' ); ?>/free_review/">Free review of your resume<span></span></a></li>
+                            <li><a href="<?php bloginfo( 'home' ); ?>/our_recommendations/">Job Boards & Recruiting services<span></span></a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
                 	<div  class="recruiters">
-                    	<h3>Recruiters - Arizona:<br> Tucson’s Time has Come! </h3>
-                        <p>Once upon a time in Arizona, creating economic opportunity was a challenge for recruiters - but not anymore...</p>
+                    	<h3><?php echo $recent_posts[1]['post_title'];?> </h3>
+                        <p><?php echo get_excerpt_by_id($recent_posts[1]['ID'],15);?></p>
                         <div class="name-btn">
-                        <div class="name">By Elaine Boylan</div>
-                        <a href="#" class="button">Read more</a>
+                       <!-- <div class="name">By Elaine Boylan </div>-->
+                        <a href="<?php echo get_permalink($recent_posts[1]['ID']);?>" class="button">Read more</a>
                         </div>
                     </div>
                 </li>
@@ -167,7 +177,7 @@ get_header(); ?>
         </div>
     </div>
 </section>
-
+<?php // print_r($recent_posts); ?>
 <section class="map-main">
 	<div class="container">
     	<div class="col-sm-1 fl">
@@ -183,7 +193,7 @@ get_header(); ?>
                                         <strong>Washington</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -194,7 +204,7 @@ get_header(); ?>
                                         <strong>Oregon</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -205,7 +215,7 @@ get_header(); ?>
                                         <strong>Idaho</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -216,7 +226,7 @@ get_header(); ?>
                                         <strong>Montana</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -227,7 +237,7 @@ get_header(); ?>
                                         <strong>California</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -238,7 +248,7 @@ get_header(); ?>
                                         <strong>Nevada</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -249,7 +259,7 @@ get_header(); ?>
                                         <strong>Wyoming</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -260,7 +270,7 @@ get_header(); ?>
                                         <strong>Utah</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -271,7 +281,7 @@ get_header(); ?>
                                         <strong>Arizona</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -282,7 +292,7 @@ get_header(); ?>
                                         <strong>Colorado</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -293,7 +303,7 @@ get_header(); ?>
                                         <strong>New mexico</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -304,7 +314,7 @@ get_header(); ?>
                                         <strong>Texas</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -315,7 +325,7 @@ get_header(); ?>
                                         <strong>Alaska</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -326,7 +336,7 @@ get_header(); ?>
                                         <strong>Hawaii</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -337,7 +347,7 @@ get_header(); ?>
                                         <strong>North Dakota</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -348,7 +358,7 @@ get_header(); ?>
                                         <strong>South Dakota</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -359,7 +369,7 @@ get_header(); ?>
                                         <strong>Nebraska</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -370,7 +380,7 @@ get_header(); ?>
                                         <strong>Kansas</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -381,7 +391,7 @@ get_header(); ?>
                                         <strong>Oklahoma</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -392,7 +402,7 @@ get_header(); ?>
                                         <strong>Minnesota</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -403,7 +413,7 @@ get_header(); ?>
                                         <strong>Lowa</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -414,7 +424,7 @@ get_header(); ?>
                                         <strong>Missouri</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -425,7 +435,7 @@ get_header(); ?>
                                         <strong>Arkansas</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -436,7 +446,7 @@ get_header(); ?>
                                         <strong>Louisiana</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -447,7 +457,7 @@ get_header(); ?>
                                         <strong>Wisconsin</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -458,7 +468,7 @@ get_header(); ?>
                                         <strong>Illinois</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -469,7 +479,7 @@ get_header(); ?>
                                         <strong>Michigan</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -480,7 +490,7 @@ get_header(); ?>
                                         <strong>Indiana</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -491,7 +501,7 @@ get_header(); ?>
                                         <strong>Ohio</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -502,7 +512,7 @@ get_header(); ?>
                                         <strong>Kentucky</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -513,7 +523,7 @@ get_header(); ?>
                                         <strong>Tennessee</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -524,7 +534,7 @@ get_header(); ?>
                                         <strong>Mississippi</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -535,7 +545,7 @@ get_header(); ?>
                                         <strong>Alabama</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -546,7 +556,7 @@ get_header(); ?>
                                         <strong>Georgia</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -557,7 +567,7 @@ get_header(); ?>
                                         <strong>Florida</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -568,7 +578,7 @@ get_header(); ?>
                                         <strong>New York</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -579,7 +589,7 @@ get_header(); ?>
                                         <strong>pennsylvania</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -590,7 +600,7 @@ get_header(); ?>
                                         <strong>VT</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -601,7 +611,7 @@ get_header(); ?>
                                         <strong>NH</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -612,7 +622,7 @@ get_header(); ?>
                                         <strong>Maine</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -623,7 +633,7 @@ get_header(); ?>
                                         <strong>MA</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -634,7 +644,7 @@ get_header(); ?>
                                         <strong>CT</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -645,7 +655,7 @@ get_header(); ?>
                                         <strong>RI</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -656,7 +666,7 @@ get_header(); ?>
                                         <strong>NJ</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -667,7 +677,7 @@ get_header(); ?>
                                         <strong>West Virginia</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -678,7 +688,7 @@ get_header(); ?>
                                         <strong>Virginia</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -689,7 +699,7 @@ get_header(); ?>
                                         <strong>MD</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -700,7 +710,7 @@ get_header(); ?>
                                         <strong>DE</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -711,7 +721,7 @@ get_header(); ?>
                                         <strong>North_Carolina</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -722,7 +732,7 @@ get_header(); ?>
                                         <strong>South_Carolina</strong>
                                         <p>Search for recuiting agency. executive recuiters or headhunters</p>
                                     </div>
-                                    <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                 </div>
                             </div>
                         </li>
@@ -788,7 +798,7 @@ get_header(); ?>
                                             <p>Search for recruiting agency, executive recruiters or headhunters
                                             </p>
                                         </div>
-                                        <button class="btn_hir"><img src="images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="images/job-seeker-checkicon.png" alt="">Job seeker</button>
+                                        <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button><button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
                                     </div>
                                 </div>
                             </li>
@@ -805,14 +815,16 @@ get_header(); ?>
         </div>
     </div>
 </section>
-
+<?php $flds3 = get_fields(227);
+$flds4 = get_fields(208);
+//print_r($flds3);?>
 <section class="hiri-manager-main">
     <div class="mngr_left">
-        <img src="images/thumb1.jpg" alt="">
+        <img src="<?php echo $flds3['home_section_image'];?>" alt="">
         <div class="mngr_left_cont">
-            <span>Tip for Effective<br>Resume Screening</span>
-            <p>There’s a famous saying that you can’t make a second first impression and this certainly applies whn...</p>
-            <a class="rd_more" href="#">Read More</a>
+            <span><?php echo $flds3['home_section_title'];?></span>
+            <p><?php echo $flds3['home_section_content'];?></p>
+            <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a>
             
         </div>
     </div>
@@ -839,29 +851,14 @@ get_header(); ?>
         </div>
     </div>
     <div class="mngr_left mngr_bdr">
-        	<img src="images/thumb2.jpg" alt="">
-            <div class="mngr_left_cont">
-            	<span>Tip for Effective<br>Resume Screening</span>
-                <p>There’s a famous saying that you can’t make a second first impression and this certainly applies whn...</p>
-                <a class="rd_more" href="#">Read More</a>
-                
-            </div>
+        	<img src="<?php echo $flds4['home_section_image'];?>" alt="">
+        	<div class="mngr_left_cont">
+            <span><?php echo $flds4['home_section_title'];?></span>
+            <p><?php echo $flds4['home_section_content'];?></p>
+            <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a>
+            
+        </div>
 		</div>
 </section>
-
-
-<section class="ord-service-main">
-	<div class="container">
-    	<div class="coman-inner">
-    		<div class="ord-service">
-        	<h4>The Online Recruiters Directory is the place to find executive recruiters,<br>executive search firms, headhunters, staffing firms and other recruiting services.</h4>
-            <div class="hand-icon"><img src="images/hand-icon.png"/></div>
-        </div>
-        </div>
-    </div>
-</section>
-
-
-
 <!--- Section End --->
 <?php get_footer();

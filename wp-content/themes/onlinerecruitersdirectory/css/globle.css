@@ -13,14 +13,14 @@ body {
 	-ms-text-size-adjust: 100%;
 }
 /* Comman Classes */
-a, img, span {
+a, img, span, input {
 	color:#555555;
 	border:0; 
 	outline:none;
 	text-decoration:none; 		
-	transition:all linear 0.3s;
-	-moz-transition:all linear 0.3s;
-	-webkit-transition:all linear 0.3s;
+	transition:all linear 0.1s;
+	-moz-transition:all linear 0.1s;
+	-webkit-transition:all linear 0.1s;
 	text-decoration:none;
 }
 a:hover{
@@ -28,9 +28,9 @@ a:hover{
 	border:0; 
 	outline:none;
 	text-decoration:none; 		
-	transition:all linear 0.3s;
-	-moz-transition:all linear 0.3s;
-	-webkit-transition:all linear 0.3s;
+	transition:all linear 0.1s;
+	-moz-transition:all linear 0.1s;
+	-webkit-transition:all linear 0.1s;
 	text-decoration:none;
 }
 img {line-height:0px; outline:none; border:none; vertical-align:middle;}
@@ -133,7 +133,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ec2b9', end
 
 .employers-section .employers-button img{ display:inline-block; vertical-align:top; padding:4px 6px 0px 0px;}
 
-.employers-section .employers-button .employers-box{ float:left; width:630px; position:absolute; max-height:400px; z-index:2; overflow:hidden; opacity:0; transition:0.8s; right:0px; top:44px; transform:translateY(-10px);}
+.employers-section .employers-button .employers-box{ float:left; width:680px; position:absolute; max-height:0px; z-index:2; overflow:hidden; opacity:0; transition:0.8s; right:0px; top:44px; transform:translateY(-10px);}
 .employers-section .employers-button > div:hover .employers-box{ max-height:400px; opacity:1; transform:translateY(0px);}
 .employers-section .employers-button > div .employers-box .employers-list{ width:100%; float:left; text-align:left; background:#fff; border:1px solid #3cb5aa; border-radius:5px; margin:0px; padding:0px 0px 10px 0px;}
 .employers-section .employers-button > div .employers-box .employers-list h4{ width:100%; float:left; background:#3cb5aa; height:36px; line-height:36px; font-size:14px; color:#03373d; font-weight:700; text-transform:uppercase; margin:0px; padding:0px 14px;}
@@ -141,7 +141,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ec2b9', end
 .employers-section .employers-button > div .employers-box .employers-list h4 img{ display:inline-block; padding:0px 10px 0px 0px; vertical-align:middle;}
 .employers-section .employers-button > div .employers-box .employers-list ul{ width:16.66%; float:left; margin:0px; padding:0px;}
 .employers-section .employers-button > div .employers-box .employers-list ul li{ width:100%; float:left; list-style:none; margin:0px; padding:0px;}
-.employers-section .employers-button > div .employers-box .employers-list ul li a{ float:left; font-size:9px; color:#03363c; text-transform:uppercase; border:none; border-radius:0px; background:none; text-shadow:none; font-weight:400; height:15px; line-height:15px; letter-spacing:0px; margin:0px; padding:0px 12px;}
+.employers-section .employers-button > div .employers-box .employers-list ul li a{ float:left; font-size:9px; color:#03363c; text-transform:uppercase; border:none; border-radius:0px; background:none; text-shadow:none; font-weight:400; height:auto; line-height:15px; letter-spacing:0px; margin:0px; padding:0px 12px;}
 .employers-section .employers-button > div .employers-box .employers-list ul li a:hover, .employers-section .employers-button:hover .employers-box .employers-list ul li a.act{ background: rgba(60, 181, 170, 0.7); font-weight:700;}
 
 
@@ -202,14 +202,14 @@ section{width:100%; float:left; margin:0px; padding:0px;}
 section.testimonial-main{width:100%; float:left; background:#90c7da; height:116px; margin:0px; padding:0px;}
 section .testimonial-inner{ width:100%; float:left; margin:0px; padding:0px 90px;}
 section .testimonial-inner ul{ width:100%; float:left; margin:0px; padding:0px;}
-section .testimonial-inner ul li{ width:auto; float:none; display:table-cell; height:116px; vertical-align:middle; text-align:center; font-weight:700; font-size:15px; font-style:italic; color:#555555; line-height:18px; list-style:none; margin:0px; padding:0px 26px;}
-section .testimonial-inner ul li a.database{display:inline-block; height:40px; line-height:40px; border:1px solid #90c7da; border-radius:5px; color:#0077a1;  font-weight:700; font-size:14px; text-transform:uppercase; margin:0px; padding:0px 12px;}
+section .testimonial-inner ul li{ width:auto; float:none; display:table-cell; height:116px; vertical-align:middle; text-align:center; font-weight:700; font-size:15px; font-style:italic; color:#fff; line-height:18px; list-style:none; margin:0px; padding:0px 26px;}
+section .testimonial-inner ul li a.database{display:inline-block; height:40px; line-height:40px; border:1px solid #90c7da; border-radius:5px; color:#fff;  font-weight:700; font-size:14px; text-transform:uppercase; margin:0px; padding:0px 12px;}
 section .testimonial-inner ul li a.database:hover{ display:inline-block; border:1px solid #0077a1; border-radius:5px; margin:0px; padding:0px 12px;}
 section .testimonial-inner ul li .database img, section .testimonial-inner ul li .assisted img{ display:inline-block; padding-right:16px;}
 
-section .testimonial-inner ul li a.assisted{display:inline-block; height:40px; line-height:40px; border:1px solid #90c7da; border-radius:5px; color:#0077a1;  font-weight:700; font-size:14px; text-transform:uppercase; margin:0px; padding:0px 12px;}
+section .testimonial-inner ul li a.assisted{display:inline-block; height:40px; line-height:40px; border:1px solid #90c7da; border-radius:5px; color:#fff;  font-weight:700; font-size:14px; text-transform:uppercase; margin:0px; padding:0px 12px;}
 section .testimonial-inner ul li a.assisted:hover{ display:inline-block; border:1px solid #fff; border-radius:5px; margin:0px; padding:0px 12px;}
-section .testimonial-inner ul li span.client-name{ display:block; font-size:11px; font-weight:400; font-style:normal; background-image:none; color:#555; padding-top:2px;}
+section .testimonial-inner ul li span.client-name{ display:block; font-size:11px; font-weight:400; font-style:normal; background-image:none; color:#fff; padding-top:2px;}
 
 
 
@@ -249,7 +249,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0079a4', end
 .articles-main ul li .h-manager ul li a{ width:100%; color:#03363c; font-size:14px; font-weight:700; line-height:16px; display: table-cell; vertical-align:middle;}
 .articles-main ul li .h-manager ul li span{ width:0; height:0; border-left:4px solid white; border-top: 3px solid transparent; border-bottom:3px solid transparent; float:right; margin-top:3px;}
 
-.articles-main ul li .job-seaker{ width:100%; height:205px; float:left; padding:0px; background:#ffcb9f;}
+.articles-main ul li .job-seaker{ width:100%; height:205px; float:left; padding:0px; background:#ffdabc;}
 .articles-main ul li .job-seaker h3.title{ width:100%; height:68px; line-height:68px; background:#ffcb9f; float:left; padding:0px; margin:0; color:#ff8355; font-size:14px; font-weight:700; letter-spacing:1px; text-align:center;}
 .articles-main ul li .job-seaker h3.title .icon{ width:37px; height:30px; float:left; background:url(../images/job-seeker-checkicon.png) no-repeat left; padding:0; margin:18px 0 0 20px;}
 .articles-main ul li .job-seaker ul{ width:100%; float:left; padding:0px; margin:0;}
@@ -342,7 +342,7 @@ a.rd_more:hover { background:#03363d; color:#fff;}
 .mngr_form .fr_fild textarea::placeholder { color:#000 !important;}
 
 center { width:100%;}
-.mngr_form .btn_cont { width:310px; margin:40px 0 30px 0; padding:0 20px ; font-size:20px; font-weight:600; color:#03363d; line-height:60px; height:60px; border:1px solid #03363d; border-radius:5px; letter-spacing:3px; text-transform:uppercase; display:inline-block; background:none;  }
+.mngr_form .btn_cont { width:310px; margin:40px 0 30px 0; padding:0 20px ; font-size:20px; font-weight:600; color:#03363d; line-height:60px; height:60px; border:1px solid #03363d; border-radius:5px; letter-spacing:3px; text-transform:uppercase; display:inline-block; background:none;}
 .mngr_form .btn_cont:hover { background:#03363d; color:#fff;}
 
 
@@ -400,4 +400,80 @@ footer .share-social a.follow-button{ width:112px; float:left; clear:left; backg
 footer .copyright{width:100%; float:left; text-align:center; font-family: 'Open Sans', sans-serif; font-size:14px; text-transform:uppercase; color:#555555; line-height:24px; margin:0px; padding:0px 0px 16px 0px;}
 footer .copyright span{ display:inline-block; font-size:12px; text-transform:none; padding:0px 0px 0px 10px;}
 footer .copyright span img{display:inline-block; padding-left:4px; vertical-align:top;}
+
+
+/* Content Page */
+.inner_page { padding:0 0 50px 0; }
+.inner_page .container { padding:0 50px;}
+.inner_page a { color:#ff8355;}
+.inner_page a:hover { color:#000;}
+.inner_page span { color:#4ebcb2;}
+.inner_page h1 { width:100%; float:left; color:#0077a1; font-size:30px; margin:0 0 20px; padding:0px 0px 10px 0px; font-weight:700; border-bottom:1px solid #ddd;}
+.inner_page h4 { width:100%; float:left; color:#ff8355; font-size:18px; margin:0 0 20px; padding:0px; font-weight:700;}
+.inner_page h5 { color:#0077a1; margin:0px; }
+.inner_page p { font-size:14px;}
+
+.breadcrum { width:100%; float:left; margin:5px 0 20px 0px; padding:0px; list-style:none;}
+.breadcrum li { float:left; margin:0 10px 0 0; padding:0px; color:#555; font-size:13px;}
+.breadcrum li a { float:left; margin:0 10px 0 0px; padding:0px; color:#555; font-size:13px; text-decoration:none;}
+.breadcrum li a:hover { color:#0077a1;}
+
+/* Contact Page */
+.contact-center{ width:100%; max-width:800px; margin:0px auto; padding:0px;}
+.contact-center .contact-form{ width:100%; float:left; margin:20px 0px 0px 0px; padding:0px;}
+.contact-center .contact-form h6{ width:100%; float:left; font-size:18px; color:#555555; text-align:center; font-weight:700; margin:0px 0px 20px 0px; padding:0px;}
+.contact-center .contact-form ul{ width:100%; float:left; margin:0px; padding:0px;}
+.contact-center .contact-form ul li{ width:45%; float:left; display:table-cell; text-align:center; vertical-align:middle; margin:0px 2.5% 16px 2.5%; padding:0px;}
+.contact-center .contact-form ul li.full-width{ width:95% !important;}
+.contact-center .contact-form ul li input[type="text"]{ width:100%; height:40px; line-height:40px; float:left; margin:0px; padding:0 10px; font-size:14px; font-weight:700; color:#03363d; background:none; border:1px solid #03363d; border-width:0px 0px 1px 0px; text-transform:uppercase;}
+.contact-center .contact-form ul li input[type="text"]::placeholder { color:#03363d; opacity:1;}
+.contact-center .contact-form ul li textarea { width:100%; height:80px; line-height:20px; float:left; margin:0px; padding:0 10px; font-size:14px; font-weight:700; color:#03363d; background:none; border:1px solid #03363d; border-width:0px 0px 1px 0px; font-family: 'Open Sans', sans-serif; resize:none; text-transform:uppercase;}
+.contact-center .contact-form ul li textarea::placeholder { color:#03363d; opacity:1;}
+.contact-center .contact-form ul li input[type="button"]{width:auto; margin:16px 0px 0px 0px; padding:0 60px; font-size:20px; font-weight:600; color:#03363d; line-height:60px; height:60px; border:1px solid #03363d; border-radius:5px; letter-spacing:3px; text-transform:uppercase; display:inline-block; background:none; text-align:center; cursor:pointer;}
+.contact-center .contact-form ul li input[type="button"]:hover { background:#03363d; color:#fff;}
+
+
+/* Associate Page */
+.directory-table{ width:100%; float:left; margin:0px; padding:0px;}
+.directory-table table{ width:100%; float:left; border-collapse:collapse; margin:0px; padding:0px;}	
+.directory-table td, th {border-bottom:1px solid #ccc !important; padding:10px 6px; text-align:left; font-size:13px; border:0px;}
+.directory-table td a{ color:#555;}
+.directory-table td a:hover{ color:#ff8355;}
+.directory-table th {font-weight:700; font-size:15px;}
+
+
+/* Job Recruiters by State Page */
+.job-center{ width:100%; max-width:800px; margin:0px auto; padding:0px;}
+.job-state-list{ width:100%; float:left; margin:0px; padding:20px; background:#f5f7f9; border-radius:6px; border:1px solid #ddd;}
+.job-state-list ul{ width:33.33%; float:left; margin:0px; padding:0px;}
+.job-state-list ul li{ width:100%; float:left; list-style:none; margin:0px; padding:0px;}
+.job-state-list ul li a{ font-size:13px; color:#555;}
+.job-state-list ul li a:hover{color:#ff8355;}
+.job-state-list ul li .fa{display:inline-block; padding:0px 10px 0px 0px;}
+
+
+/* All Articles Page */
+.articles-section{ width:100%; float:left; margin:0px; padding:0px;}
+.articles-section .col-sm-1{ width:48%;}
+.articles-section .articles-hiring{ width:100%; float:left; margin:0px; padding:0px;}
+.articles-section .articles-hiring h6{width:100%; float:left; background:#3cb5aa; height:44px; line-height:44px; color:#03363d; font-size:15px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin:0px 0px 14px 0px; padding:0px 20px;}
+.articles-section .articles-hiring ul{ width:100%; float:left; margin:0px; padding:0px;}
+.articles-section .articles-hiring ul li{ width:100%; float:left; list-style:none; border-bottom:1px solid #90c7da; margin:0px 0px 10px 0px; padding:0px 0px 10px 0px;}
+.articles-section .articles-hiring ul li a{ font-size:14px; color:#555;}
+.articles-section .articles-hiring ul li a:hover{color:#03363d;}
+
+.articles-section .articles-job-seeker{ width:100%; float:left; margin:0px; padding:0px;}
+.articles-section .articles-job-seeker h6{width:100%; float:left; background:#ffcb9f; height:44px; line-height:44px; color:#ff8355; font-size:15px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin:0px 0px 14px 0px; padding:0px 20px;}
+.articles-section .articles-job-seeker ul{ width:100%; float:left; margin:0px; padding:0px;}
+.articles-section .articles-job-seeker ul li{ width:100%; float:left; list-style:none; border-bottom:1px solid #90c7da; margin:0px 0px 10px 0px; padding:0px 0px 10px 0px;}
+.articles-section .articles-job-seeker ul li a{ font-size:14px; color:#555;}
+.articles-section .articles-job-seeker ul li a:hover{color:#ff8355;}
+
+
+
+/* Job Seeker Page */
+.find-firms-list{ width:100%; float:left; margin:0px; padding:0px;}
+.find-firms-list ul{ width:100%; float:left; margin:0px; padding:0px;}
+.find-firms-list ul li{ width:auto; float:left; list-style:none; margin:0px; padding:0px;}
+.find-firms-list ul li a{}
 
