@@ -7,6 +7,9 @@ get_header();
 $srchlocation = $_REQUEST['location'];
 $sector = $_REQUEST['sector'];
 
+$sid = $_REQUEST['sid'];
+$cid = $_REQUEST['cid'];
+
 global $wpdb;
 if($_REQUEST['hid1'] == "1"){
 	
@@ -42,7 +45,7 @@ if($_REQUEST['hid1'] == "1"){
 		$cat_qry.= " ) ";
 	}
 	
-	echo $sql = "SELECT * FROM recruiter 
+	$sql = "SELECT * FROM recruiter 
 	WHERE aprove='YES' $state_qry $cat_qry";
 	$squery.=" order by rank";
     $_SESSION["RECURITERQUERY"]=$sql.$squery;
@@ -76,7 +79,7 @@ if($_REQUEST['hid1'] == "1"){
 				//print_r($categories_new);
 				?>
               <li>
-                <input type="checkbox" name="category[]" id="category"  <?php if($sector == $categories_new->categoryid){echo "checked='checked'";}?>  value="<?php echo $categories_new->categoryid;?>" />
+                <input type="checkbox" name="category[]" id="category"  <?php if($cid == $categories_new->categoryid){echo "checked='checked'";}?>  value="<?php echo $categories_new->categoryid;?>" />
                 &nbsp;&nbsp;<?php echo $categories_new->categoryname; ?></li>
               <?php
 				}
@@ -90,7 +93,7 @@ if($_REQUEST['hid1'] == "1"){
 				//print_r($categories_new);
 				?>
               <li>
-                <input type="checkbox" name="state[]" id="state" <?php if($srchlocation == $states_new->id){echo "checked='checked'";}?> value="<?php echo $states_new->id;?>" />
+                <input type="checkbox" name="state[]" id="state" <?php if($sid == $states_new->id){echo "checked='checked'";}?> value="<?php echo $states_new->id;?>" />
                 &nbsp;&nbsp;<?php echo $states_new->name; ?></li>
               <?php
 				}

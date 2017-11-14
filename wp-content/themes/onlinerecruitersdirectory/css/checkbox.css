@@ -168,3 +168,89 @@
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
+
+
+
+
+
+/* Job Seeker Page */
+.search-center .search-full .select-list ul li .checkbox-list .control-group {
+  display: inline-block;
+  vertical-align: top;
+  text-align:left; 
+  padding:0px;
+  width: 100%;
+  margin:0px;  
+}
+.search-center .search-full .select-list ul li .checkbox-list .control {
+  display: block;
+  position: relative;
+  padding:0px 0px 0px 36px;
+  margin:0px;	
+  cursor: pointer;
+  font-size: 14px;
+  border:0px solid #36a199;
+  height:26px;
+  line-height:22px;
+  border-radius:0px;
+  color:#555;
+  font-weight:400;
+  letter-spacing:0px;
+  background:none;
+  }
+.search-center .search-full .select-list ul li .checkbox-list .control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.search-center .search-full .select-list ul li .checkbox-list .control__indicator {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  height: 22px;
+  width: 22px;
+  background: #fff;
+  border-radius:100%;
+  border:1px solid #bababa;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control--radio .control__indicator {
+  border-radius: 50%;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control:hover input ~ .control__indicator,
+.search-center .search-full .select-list ul li .checkbox-list .control input:focus ~ .control__indicator {
+  background: #fff;
+  border:1px solid #bababa;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control input:checked ~ .control__indicator {
+  background: #fff;
+  border:1px solid #0077a1;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control:hover input:not([disabled]):checked ~ .control__indicator,
+.search-center .search-full .select-list ul li .checkbox-list .control input:checked:focus ~ .control__indicator {
+  background: #fff;
+  border:1px solid #0077a1;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control input:disabled ~ .control__indicator {
+  background: #fff;
+  border:1px solid #bababa;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.search-center .search-full .select-list ul li .checkbox-list .control--checkbox .control__indicator:after {
+  left: 7px;
+  top: 4px;
+  width: 6px;
+  height: 10px;
+  border: solid #0077a1;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
