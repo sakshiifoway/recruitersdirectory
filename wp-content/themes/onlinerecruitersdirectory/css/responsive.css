@@ -124,11 +124,11 @@ footer .col-sm-1:nth-child(5) { width:20%;}
 header{ padding-bottom:44px;}
 header .logo { padding-bottom:0px;}
 header .logo img{ width:100%; max-width:270px;}
-.menu-main { width:100%; border:none; margin:0px; text-align:center; position:absolute; left:0px; top:70px;}
+.menu-main { width:100%; border:none; margin:0px; text-align:center; position:absolute; left:0px; top:90px;}
 .active { display: block; }
-.toggleMenu{ display:inline-block; float:right; background:#0077a1; margin:20px 12px 0px 0px; /*border:2px solid #fff;*/ height:33px; margin-bottom:0px;}
+.toggleMenu{ display:inline-block; float:right; margin:0px 12px 0px 0px; /*border:2px solid #fff;*/ height:33px; margin-bottom:0px;}
 .toggleMenu span{ height:3px; margin:4px 0 0;}
-.nav{ margin-top:58px;}
+.nav{ margin-top:38px;}
 .nav > li { float: none; background:rgba(0,169,157,0.9); padding:0px; border:none; }
 .nav > li a { border-bottom:1px solid #21c4b8; padding:0 15px; font-size:14px; color:#fff; line-height:36px; font-weight:normal; transition:none; letter-spacing:0px;text-align:left;}
 .nav > li a:hover {color:#000;}
@@ -200,22 +200,44 @@ footer .copyright { font-size:12px;}
 @media screen and (max-width: 767px) {
 .container { width:580px}	
 
-header .logo img{ width:100%; max-width:240px;}
+header .logo img{ width:100%; max-width:200px;}
+header .container { position:relative; }	
+
+header .head-toplink ul li a { padding-right:12px;}
+.employers-section label{ font-size:11px;}
+.employers-section .employers-button > div a { margin:0px;}
+
+.main-banner .banner-caption { position:relative; }
+.main-banner .banner-caption .container { position:absolute; bottom:100%; left:0px; padding-bottom:20px; }
+.main-banner .banner-caption .search-part .container { position:relative; }
+.main-banner .search-part { margin-top:0px; background-size:cover; padding:10px 0;}
+.main-banner .search-part .search-title { margin:0px; font-size:13px;}
+.main-banner .search-part .search-form ul li { width:100%;}
+.main-banner .search-part .search-form ul li:nth-child(1), .main-banner .search-part .search-form ul li:nth-child(2) { width:50%;}
+.main-banner .search-part .search-form ul li select { height:40px; line-height:40px; margin:5px 0 15px; font-size:12px;}
+.main-banner .search-part .search-form ul li .checkbox-part { float:none; margin:0 auto;}
+.main-banner .search-part .search-form ul li button { width:120px; height:auto; line-height:36px; float:none; margin:15px auto 0 auto; font-size:16px; position:relative; left:50%; transform:translateX(-50%); }
+.main-banner .search-part .search-form ul li button img { width:34px;}
 
 section .other-logo ul { display:table-cell; text-align:center; vertical-align:middle;}
 section .other-logo ul li{ width:18%; float:none; display:inline-block; line-height:inherit;}
 
 .map-main .col-sm-1{ width:100%;}
 .map-main .col-sm-2{ width:100%; position:relative; right:0px;}
-.map-main .find-sector-part .sector-list ul li a{ margin-bottom:4px;}
+.map-main .find-sector-part .find-sector { margin-top:20px;}
+.map-main .find-sector-part .find-character-part { margin-top:20px;}
+.map-main .find-sector-part .sector-list { margin-top:20px;}
+.map-main .find-sector-part .sector-list ul li a{ margin-bottom:0px;}
 .map-main .find-sector-part .sector-list ul li:hover .tooltip-main{ right:0px;}
 .map-main .find-sector-part .sector-list ul li:hover .tooltip-main .tooltip-inner{ width:100%;}
 
 
+
 .hiri-manager-main{ display:inline-block; }
-.mngr_left{ width:100%; border-right:0px;}
+.mngr_left{ width:100%; border-right:0px; padding:0px;}
 .mngr_mid{ width:100%; border-top:2px solid #fff; border-bottom:2px solid #fff;}
 .mngr_bdr{ border-left:0px;}
+
 
 section .ord-service .hand-icon{ width:78px; text-align:center;}
 section .ord-service .hand-icon img{ max-width:50px;}
@@ -223,20 +245,85 @@ section .ord-service .hand-icon img{ max-width:50px;}
 footer{ margin-top:30px;}
 footer h2{ padding-bottom:10px;}
 footer .footer-section{ margin-bottom:20px;}
-footer .col-sm-1:nth-child(1) { width:50%;} 
-footer .col-sm-1:nth-child(2) { width:50%; min-height:200px;} 
+footer .col-sm-1:nth-child(1) { width:44%;} 
+footer .col-sm-1:nth-child(2) { width:55%; min-height:200px;} 
 footer .col-sm-1:nth-child(3) { width:44%;} 
 footer .col-sm-1:nth-child(4) { width:26%;} 
 footer .col-sm-1:nth-child(5) { width:30%;} 
-
 }
 
 @media screen and (max-width: 599px) {
-.container { width:460px}	
+.container { width:460px}
+
+header{ padding-bottom:10px;}
+header .logo { padding-top:18px; position:relative; z-index:222222;}
+.menu-main { top:20px;}
+
+header .head-topright { width:100%; max-width:320px; float:none; margin:0px auto;}
+header .head-toplink ul{ width:100%; float:left; display:table-cell; text-align:center; vertical-align:middle;}
+header .head-toplink ul li{ float:none; display:inline-block; vertical-align:middle; letter-spacing:0px;}
+header .head-toplink ul li .top-social{ float:left;}
+header .head-toplink ul li .share-icon a{ margin:0px;}
+header .head-toplink ul li .share-icon .other-social{ right:0px;}
+
+
+
+.employers-section{ margin-top:4px;}
+.employers-section label{ width:100%; text-align:center; padding:0px 0px 6px 0px;}
+.employers-section .employers-button{ width:100%; float:left; display:table-cell; text-align:center; vertical-align:middle;}
+
+.main-banner .caption-inner h6{ font-size:15px;}
+.main-banner .caption-inner h4{ font-size:14px; line-height:18px;}
+.main-banner .caption-inner h1{ font-size:36px; line-height:46px;}
+
+.coman-inner{ padding:0px;}
+
+section.testimonial-main{ height:auto; padding:10px 0px;}
+section .testimonial-inner ul li{ width:33.33%; float:left; height:auto; padding:6px;}
+section .testimonial-inner ul li:first-child{ width:100%; padding:0px;}
+section .testimonial-inner ul li:last-child{ width:100%; padding:0px;}
+
+
+.articles-main ul li{ width:100%; padding:0px; margin:5px 0px;}
+.articles-main ul li .h-manager h3.title{ height:56px; line-height:56px; font-size:14px;}
+.articles-main ul li .h-manager h3.title .icon{ margin-top:13px;}
+.articles-main ul li .job-seaker h3.title{ height:56px; line-height:56px; font-size:14px;}
+.articles-main ul li .job-seaker h3.title .icon{ margin-top:13px;}
+.articles-main ul li .recruiters{ min-height:inherit;}
+.articles-main ul li .h-manager{ min-height:inherit;}
+.articles-main ul li .job-seaker{ min-height:inherit;}
+
+footer h2{ padding-bottom:10px; margin-bottom:12px;}
+footer .col-sm-1:nth-child(1) { width:100%; margin-bottom:10px;} 
+footer .col-sm-1:nth-child(2) { width:100%; min-height:inherit; margin-bottom:10px;} 
+footer .col-sm-1:nth-child(3) { width:100%; margin-bottom:10px;} 
+footer .col-sm-1:nth-child(4) { width:100%; margin-bottom:10px;} 
+footer .col-sm-1:nth-child(5) { width:100%;} 
+
 }
 
 @media screen and (max-width: 479px) {
 .container { width:355px}
+
+.main-banner .caption-inner{ padding:0px;}
+.main-banner .caption-inner h6{ display:none; }
+.main-banner .caption-inner h4{display:none;}
+.main-banner .caption-inner h1{ font-size:22px;}
+
+.main-banner .search-part .search-form{ padding-bottom:0px;}
+.main-banner .search-part .search-form ul li{ margin-bottom:10px;}
+.main-banner .search-part .search-form ul li:nth-child(1), .main-banner .search-part .search-form ul li:nth-child(2) { width:100%;}
+.main-banner .search-part .search-form ul li .select-fildset{ margin:0px;}
+.main-banner .search-part .search-form ul li select{ margin:0px;}
+.main-banner .search-part .search-form ul li .hiring-manager-check{ margin-bottom:10px;}
+.main-banner .search-part .search-form ul li .checkbox-part{ width:100%; float:left;}
+.main-banner .search-part .search-form ul li button{ width:100%; margin:0px;}
+
+section .testimonial-inner ul li{ width:100%; float:left; height:auto; padding:6px;}
+
+section .other-logo ul li{ width:30%;}
+
+.mngr_mid .tp_title h2{ font-size:20px;}
 }
 
 @media screen and (max-width: 374px) {

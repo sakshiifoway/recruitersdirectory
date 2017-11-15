@@ -64,13 +64,12 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.texas { width:258px; height:250px; left:375px; top:343px; z-index:20; }
 .map_main ul li.texas:hover { background:url(../images/map/texas.png) 0px bottom no-repeat; cursor:pointer; }
-.map_main ul li.texas .map-tooltip .tooltip-inner { bottom:42% !important;}
 #texasm { left:50% !important; top:80% !important;}
 
 .map_main ul li.alaska { width:265px; height:181px; left:0px; top:467px; z-index:13; }
 .map_main ul li.alaska:hover { background:url(../images/map/alaska.png) 0px 0px no-repeat; cursor:pointer; }
 
-.map_main ul li.hawaii { width:80px; height:45px; left:302px; top:549px; z-index:21; }
+.map_main ul li.hawaii { width:80px; height:45px; left:302px; top:549px; z-index:14; }
 .map_main ul li.hawaii:hover { background:url(../images/map/hawaii.png) 0px 0px no-repeat; cursor:pointer; }
 
 .map_main ul li.north_dakota { width:120px; height:75px; left:455px; top:51px; z-index:15; }
@@ -78,8 +77,6 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.south_dakota { width:129px; height:86px; left:447px; top:119px; z-index:16; }
 .map_main ul li.south_dakota:hover { background:url(../images/map/south-dakota.png) 0px 0px no-repeat; cursor:pointer; }
-.map_main ul li.south_dakota .map-tooltip .tooltip-inner { transform:translate(-250px, 0px); }
-.map_main ul li.south_dakota .map-tooltip .tooltip-inner::after { left:80%;}
 
 .map_main ul li.nebraska { width:153px; height:76px; left:444px; top:187px; z-index:17; }
 .map_main ul li.nebraska:hover { background:url(../images/map/nebraska.png) 0px 0px no-repeat; cursor:pointer; }
@@ -89,8 +86,6 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.oklahoma { width:158px; height:82px; left:456px; top:331px; z-index:21; }
 .map_main ul li.oklahoma:hover { background:url(../images/map/oklahoma.png) 0px 0px no-repeat; cursor:pointer; }
-.map_main ul li.oklahoma .map-tooltip .tooltip-inner { transform:translate(-220px, 0px); }
-.map_main ul li.oklahoma .map-tooltip .tooltip-inner::after { left:75%;}
 #oklahomam { left:25% !important; top:25% !important;}
 
 .map_main ul li.minnesota { width:120px; height:135px; left:564px; top:48px; z-index:20; }
@@ -107,8 +102,6 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.louisiana { width:103px; height:92px; left:622px; top:425px; z-index:31; cursor:pointer; }
 .map_main ul li.louisiana:hover { background:url(../images/map/louisiana.png) 0px 0px no-repeat; cursor:pointer; }
-.map_main ul li.louisiana .map-tooltip .tooltip-inner { transform:translate(-250px, 0px); }
-.map_main ul li.louisiana .map-tooltip .tooltip-inner::after { left:80%;}
 
 .map_main ul li.wisconsin { width:97px; height:104px; left:633px; top:100px; z-index:25; }
 .map_main ul li.wisconsin:hover { background:url(../images/map/wisconsin.png) 0px 0px no-repeat; cursor:pointer; }
@@ -196,127 +189,127 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li .map-tooltip .tooltip-inner{transform:translate(-150px, 0px);}
 
-.map_main ul li.washington { width:105px; height:76px; left:120px; top:0px; }
+.map_main ul li.washington { width:105px; height:76px; left:120px; top:0px; z-index:1; }
 .map_main ul li.washington:hover { background-size:100% 100%;}
 
-.map_main ul li.oregon { width:128px; height:110px; left:91px; top:46px; }
+.map_main ul li.oregon { width:128px; height:110px; left:91px; top:46px; z-index:2; }
 .map_main ul li.oregon:hover { background-size:100% 100%;}
 
-.map_main ul li.ldaho { width:94px; height:154px; left:195px; top:19px; }
+.map_main ul li.ldaho { width:94px; height:154px; left:195px; top:19px; z-index:5; }
 .map_main ul li.ldaho:hover {  background-size:100% 100%;}
 
-.map_main ul li.montana { width:160px; height:103px; left:235px; top:22px;}
+.map_main ul li.montana { width:160px; height:103px; left:235px; top:22px; z-index:4; }
 .map_main ul li.montana:hover {background-size:100% 100%;}
 
-.map_main ul li.california { width:127px; height:218px; left:80px; top:127px; }
+.map_main ul li.california { width:127px; height:218px; left:80px; top:127px; z-index:5; }
 .map_main ul li.california:hover {background-size:100% 100%;}
 
-.map_main ul li.nevada { width:102px; height:155px; left:136px; top:144px; }
+.map_main ul li.nevada { width:102px; height:155px; left:136px; top:144px; z-index:6; }
 .map_main ul li.nevada:hover {background-size:100% 100%;}
 
-.map_main ul li.wyoming { width:110px; height:92px; left:278px; top:112px; }
+.map_main ul li.wyoming { width:110px; height:92px; left:278px; top:112px; z-index:7; }
 .map_main ul li.wyoming:hover {background-size:100% 100%;}
 
-.map_main ul li.utah { width:89px; height:113px; left:219px; top:163px; }
+.map_main ul li.utah { width:89px; height:113px; left:219px; top:163px; z-index:8; }
 .map_main ul li.utah:hover {background-size:100% 100%;}
 
-.map_main ul li.arizona { width:110px; height:126px; left:188px; top:262px; }
+.map_main ul li.arizona { width:110px; height:126px; left:188px; top:262px; z-index:9; }
 .map_main ul li.arizona:hover {background-size:100% 100%;}
 
-.map_main ul li.colorado { width:116px; height:92px; left:296px; top:196px; }
+.map_main ul li.colorado { width:116px; height:92px; left:296px; top:196px; z-index:10; }
 .map_main ul li.colorado:hover {background-size:100% 100%;}
 
-.map_main ul li.new_mexico { width:112px; height:115px; left:281px; top:275px; }
+.map_main ul li.new_mexico { width:112px; height:115px; left:281px; top:275px; z-index:21; }
 .map_main ul li.new_mexico:hover {background-size:100% 100%;}
 
-.map_main ul li.texas { width:222px; height:217px; left:323px; top:295px; }
+.map_main ul li.texas { width:222px; height:217px; left:323px; top:295px; z-index:20; }
 .map_main ul li.texas:hover {background-size:100% 100%;}
 
-.map_main ul li.alaska { width:232px; height:156px; left:-3px; top:403px; }
+.map_main ul li.alaska { width:232px; height:156px; left:-3px; top:403px; z-index:13; }
 .map_main ul li.alaska:hover {background-size:100% 100%;}
 
-.map_main ul li.hawaii { width:69px; height:39px; left:260px; top:474px; }
+.map_main ul li.hawaii { width:69px; height:39px; left:260px; top:474px; z-index:14; }
 .map_main ul li.hawaii:hover {background-size:100% 100%;}
 
-.map_main ul li.north_dakota { width:104px; height:64px; left:390px; top:44px; }
+.map_main ul li.north_dakota { width:104px; height:64px; left:390px; top:44px; z-index:15; }
 .map_main ul li.north_dakota:hover {background-size:100% 100%;}
 
-.map_main ul li.south_dakota { width:110px; height:73px; left:385px; top:104px; }
+.map_main ul li.south_dakota { width:110px; height:73px; left:385px; top:104px; z-index:16; }
 .map_main ul li.south_dakota:hover {background-size:100% 100%;}
 
-.map_main ul li.nebraska { width:132px; height:66px; left:381px; top:162px; }
+.map_main ul li.nebraska { width:132px; height:66px; left:381px; top:162px; z-index:17; }
 .map_main ul li.nebraska:hover {background-size:100% 100%;}
 
-.map_main ul li.kansas { width:117px; height:63px; left:407px; top:225px; }
+.map_main ul li.kansas { width:117px; height:63px; left:407px; top:225px; z-index:18; }
 .map_main ul li.kansas:hover {background-size:100% 100%;}
 
-.map_main ul li.oklahoma { width:136px; height:70px; left:392px; top:286px; }
+.map_main ul li.oklahoma { width:136px; height:70px; left:392px; top:286px; z-index:21; }
 .map_main ul li.oklahoma:hover {background-size:100% 100%;}
 
-.map_main ul li.minnesota { width:103px; height:117px; left:486px; top:41px; }
+.map_main ul li.minnesota { width:103px; height:117px; left:486px; top:41px; z-index:20; }
 .map_main ul li.minnesota:hover {background-size:100% 100%;}
 
-.map_main ul li.lowa { width:96px; height:64px; left:493px; top:155px; }
+.map_main ul li.lowa { width:96px; height:64px; left:493px; top:155px; z-index:28; }
 .map_main ul li.lowa:hover {background-size:100% 100%;}
 
-.map_main ul li.missouri { width:106px; height:92px; left:506px; top:214px; }
+.map_main ul li.missouri { width:106px; height:92px; left:506px; top:214px; z-index:29; }
 .map_main ul li.missouri:hover {background-size:100% 100%;}
 
-.map_main ul li.arkansas { width:78px; height:72px; left:525px; top:296px; }
+.map_main ul li.arkansas { width:78px; height:72px; left:525px; top:296px; z-index:30; }
 .map_main ul li.arkansas:hover {background-size:100% 100%;}
 
-.map_main ul li.louisiana { width:88px; height:79px; left:535px; top:366px; cursor:pointer; }
+.map_main ul li.louisiana { width:88px; height:79px; left:535px; top:366px; z-index:31; cursor:pointer; }
 .map_main ul li.louisiana:hover {background-size:100% 100%;}
 
-.map_main ul li.wisconsin { width:83px; height:90px; left:546px; top:86px; }
+.map_main ul li.wisconsin { width:83px; height:90px; left:546px; top:86px; z-index:25; }
 .map_main ul li.wisconsin:hover {background-size:100% 100%;}
 
-.map_main ul li.illinois { width:63px; height:112px; left:570px; top:173px; }
+.map_main ul li.illinois { width:63px; height:112px; left:570px; top:173px; z-index:28; }
 .map_main ul li.illinois:hover {background-size:100% 100%;}
 
-.map_main ul li.michigan { width:120px; height:114px; left:577px; top:73px; }
+.map_main ul li.michigan { width:120px; height:114px; left:577px; top:73px; z-index:24; }
 .map_main ul li.michigan:hover {background-size:100% 100%;}
 
-.map_main ul li.indiana { width:46px; height:84px; left:627px; top:183px; }
+.map_main ul li.indiana { width:46px; height:84px; left:627px; top:183px; z-index:28; }
 .map_main ul li.indiana:hover {background-size:100% 100%;}
 
-.map_main ul li.ohio { width:66px; height:76px; left:666px; top:171px; }
+.map_main ul li.ohio { width:66px; height:76px; left:666px; top:171px; z-index:29; }
 .map_main ul li.ohio:hover {background-size:100% 100%;}
 
-.map_main ul li.kentucky { width:118px; height:59px; left:604px; top:235px; }
+.map_main ul li.kentucky { width:118px; height:59px; left:604px; top:235px; z-index:30; }
 .map_main ul li.kentucky:hover {background-size:100% 100%;}
 
-.map_main ul li.tennessee { width:128px; height:46px; left:596px; top:279px; }
+.map_main ul li.tennessee { width:128px; height:46px; left:596px; top:279px; z-index:31; }
 .map_main ul li.tennessee:hover {background-size:100% 100%;}
 
-.map_main ul li.mississippi { width:55px; height:99px; left:578px; top:322px; }
+.map_main ul li.mississippi { width:55px; height:99px; left:578px; top:322px; z-index:32;  }
 .map_main ul li.mississippi:hover {background-size:100% 100%;}
 
-.map_main ul li.alabama { width:60px; height:99px; left:629px; top:318px; }
+.map_main ul li.alabama { width:60px; height:99px; left:629px; top:318px; z-index:33; }
 .map_main ul li.alabama:hover {background-size:100% 100%;}
 
-.map_main ul li.georgia { width:85px; height:90px; left:671px; top:313px; }
+.map_main ul li.georgia { width:85px; height:90px; left:671px; top:313px; z-index:51; }
 .map_main ul li.georgia:hover {background-size:100% 100%;}
 
-.map_main ul li.florida { width:145px; height:111px; left:644px; top:392px; }
+.map_main ul li.florida { width:145px; height:111px; left:644px; top:392px; z-index:52; }
 .map_main ul li.florida:hover {background-size:100% 100%;}
 
-.map_main ul li.newyork { width:123px; height:92px; left:736px; top:89px; }
+.map_main ul li.newyork { width:123px; height:92px; left:736px; top:89px; z-index:36; }
 .map_main ul li.newyork:hover {background-size:100% 100%;}
 
-.map_main ul li.pennsylvania { width:93px; height:61px; left:726px; top:154px; }
+.map_main ul li.pennsylvania { width:93px; height:61px; left:726px; top:154px; z-index:37; }
 .map_main ul li.pennsylvania:hover {background-size:100% 100%;}
 
-.map_main ul li.vt { width:27px; height:50px; left:817px; top:83px; }
+.map_main ul li.vt { width:27px; height:50px; left:817px; top:83px; z-index:38; }
 .map_main ul li.vt:hover {background-size:100% 100%;}
 
-.map_main ul li.nh { width:27px; height:56px; left:837px; top:75px; }
+.map_main ul li.nh { width:27px; height:56px; left:837px; top:75px; z-index:40; }
 .map_main ul li.nh:hover {background-size:100% 100%;}
 
-.map_main ul li.maine { width:60px; height:93px; left:845px; top:27px; }
+.map_main ul li.maine { width:60px; height:93px; left:845px; top:27px; z-index:39; }
 .map_main ul li.maine:hover {background-size:100% 100%;}
 
-.map_main ul li.ma { width:54px; height:28px; left:828px; top:121px; }
+.map_main ul li.ma { width:54px; height:28px; left:828px; top:121px; z-index:41; }
 .map_main ul li.ma:hover { background-size:100% 100%;}
 
 
