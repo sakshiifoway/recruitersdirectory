@@ -207,6 +207,9 @@ header .head-toplink ul li a { padding-right:12px;}
 .employers-section label{ font-size:11px;}
 .employers-section .employers-button > div a { margin:0px;}
 
+.employers-section .employers-button .employers-box { width:580px; } 
+
+
 .main-banner .banner-caption { position:relative; }
 .main-banner .banner-caption .container { position:absolute; bottom:100%; left:0px; padding-bottom:20px; }
 .main-banner .banner-caption .search-part .container { position:relative; }
@@ -266,7 +269,10 @@ header .head-toplink ul li .top-social{ float:left;}
 header .head-toplink ul li .share-icon a{ margin:0px;}
 header .head-toplink ul li .share-icon .other-social{ right:0px;}
 
-
+.employers-section .employers-button .employers-box { width:100%; } 
+.employers-section .employers-button > div .employers-box .employers-list ul{ -webkit-column-count:3;     -moz-column-count:3; column-count:3; }
+.employers-section .employers-button > div .employers-box .employers-list h4 { font-size:12px; line-height:16px;}
+.employers-section .employers-button > div .employers-box .employers-list h4 img { float:left; }
 
 .employers-section{ margin-top:4px;}
 .employers-section label{ width:100%; text-align:center; padding:0px 0px 6px 0px;}
@@ -322,6 +328,10 @@ footer .col-sm-1:nth-child(5) { width:100%;}
 section .testimonial-inner ul li{ width:100%; float:left; height:auto; padding:6px;}
 
 section .other-logo ul li{ width:30%;}
+
+section.ord-service-main{ padding:10px 0px;}
+section .ord-service h4{ width:100%; float:left; height:auto; text-align:center;}
+section .ord-service .hand-icon{ width:100%; float:left; text-align:center; height:auto; margin-top:6px;}
 
 .mngr_mid .tp_title h2{ font-size:20px;}
 }

@@ -46,7 +46,15 @@ session_start();
 <script type="text/javascript" language="javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-1-8-2.js"></script>
 
 
-
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-2202602-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -90,8 +98,9 @@ session_start();
 									$Top_states = $wpdb->get_results("SELECT * from state order by name ASC");
 									$SI=1;
 									foreach ($Top_states as $topst) {  ?> 
-                                    	<li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/?sid=<?php echo $topst->state_alias; ?>"><?php echo $topst->name; ?></a></li>
-                                    <? $SI++; if($SI%10==0){echo "</ul><ul>";}} ?>
+                                    	<li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/?sid=<?php echo $topst->id; ?>&location=<?php echo $topst->state_alias; ?>"><?php echo $topst->name; ?></a></li>
+                                    <? $SI++; //if($SI%10==0){echo "</ul><ul>";}
+									} ?>
                                    </ul>
                             </div>
                         </div>
@@ -108,8 +117,9 @@ session_start();
 									$Top_Sector = $wpdb->get_results("SELECT * from category order by categoryname ASC");
 									$SS=1;
 									foreach ($Top_Sector as $topsec) {  ?> 
-                                    	<li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/?action=d&cid=<?php echo $topsec->id; ?>&sector=<?php echo $topsec->category_slug; ?>"><?php echo $topsec->categoryname; ?></a></li>
-                                    <? $SS++; if($SS%10==0){echo "</ul><ul>";}} ?>
+                                    	<li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/?action=d&cid=<?php echo $topsec->categoryid; ?>&sector=<?php echo $topsec->category_slug; ?>"><?php echo $topsec->categoryname; ?></a></li>
+                                    <? $SS++; //if($SS%15==0){echo "</ul><ul>";}
+									} ?>
                                    </ul>               
                               
                         </div>

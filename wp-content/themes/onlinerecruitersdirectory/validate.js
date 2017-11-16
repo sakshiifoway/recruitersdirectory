@@ -48,8 +48,13 @@ function CheckHomeContact(){
 		err+= "Please enter email address.\n";
 		rtn = false;
 	}
+	else if($("#email").val().indexOf('@',0) == -1 || $("#email").val().indexOf('.',0) == -1)
+	{
+		err+= "Please enter valid email address.\n";
+		rtn = false;
+	}
 	if($("#complain_details").val() == ""){
-		err+= "Please add company details.\n";
+		err+= "Please enter your message.\n";
 		rtn = false;
 	}
 	if(err ==""){}

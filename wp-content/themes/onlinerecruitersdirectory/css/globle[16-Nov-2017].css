@@ -133,21 +133,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ec2b9', end
 
 .employers-section .employers-button img{ display:inline-block; vertical-align:top; padding:4px 6px 0px 0px;}
 
-.employers-section .employers-button .employers-box{ float:left; width:1000px; position:absolute; max-height:0px; z-index:9999; overflow:hidden; opacity:0; transition:0.8s; right:0px; top:44px; transform:translateY(-10px);}
+.employers-section .employers-button .employers-box{ float:left; width:680px; position:absolute; max-height:0px; z-index:9999; overflow:hidden; opacity:0; transition:0.8s; right:0px; top:44px; transform:translateY(-10px);}
 .employers-section .employers-button > div:hover .employers-box{ max-height:400px; opacity:1; transform:translateY(0px);}
 .employers-section .employers-button > div .employers-box .employers-list{ width:100%; float:left; text-align:left; background:#fff; border:1px solid #3cb5aa; border-radius:5px; margin:0px; padding:0px 0px 10px 0px;}
 .employers-section .employers-button > div .employers-box .employers-list h4{ width:100%; float:left; background:#3cb5aa; height:36px; line-height:36px; font-size:14px; color:#03373d; font-weight:700; text-transform:uppercase; margin:0px; padding:0px 14px;}
 .employers-section .employers-button > div .employers-box .employers-list h4 span{ color:#fff;}
 .employers-section .employers-button > div .employers-box .employers-list h4 img{ display:inline-block; padding:3px 10px 0px 0px; vertical-align:top;}
-.employers-section .employers-button > div .employers-box .employers-list ul{ width:100%; margin:0px; padding:0px;
--webkit-column-count: 6;
-    -moz-column-count: 6;
-    column-count: 6;
-}
-.employers-section .employers-button > div .employers-box .employers-list ul li{ display:block; margin:0px; padding:0px;
-
-}
-.employers-section .employers-button > div .employers-box .employers-list ul li a{ display:block; font-size:9px; color:#03363c; text-transform:uppercase; border:none; border-radius:0px; background:none; text-shadow:none; font-weight:400; height:auto; line-height:inherit; letter-spacing:0px; margin:0px; padding:2px 4px;}
+.employers-section .employers-button > div .employers-box .employers-list ul{ width:16.66%; float:left; margin:0px; padding:0px;}
+.employers-section .employers-button > div .employers-box .employers-list ul li{ width:100%; float:left; list-style:none; margin:0px; padding:0px;}
+.employers-section .employers-button > div .employers-box .employers-list ul li a{ float:left; font-size:9px; color:#03363c; text-transform:uppercase; border:none; border-radius:0px; background:none; text-shadow:none; font-weight:400; height:auto; line-height:15px; letter-spacing:0px; margin:0px; padding:0px 12px;}
 .employers-section .employers-button > div .employers-box .employers-list ul li a:hover, .employers-section .employers-button:hover .employers-box .employers-list ul li a.act{ background: rgba(60, 181, 170, 0.7); font-weight:700;}
 
 
@@ -313,8 +307,6 @@ button.btn_job img { float:left; margin:9px 7px 0;}
 button.btn_job:hover { cursor:pointer; background:#17535a; border:1px solid #17535a; }
 
 
-
-
 a.btn_hir { width:49%; height:50px; float:left; margin:0px; padding:0px; background:#3fb0ac; font-size:14px !important; color:#0d4c51 !important; font-weight:400; line-height:50px; text-align:left; border:1px solid #3fb0ac; border-radius:4px; text-decoration:none; font-family: 'Open Sans', sans-serif;}
 a.btn_hir img { float:left; margin:9px 7px 0;}
 a.btn_hir:hover { cursor:pointer; background:#ff8355; border:1px solid #ff8355; }
@@ -330,6 +322,7 @@ a.btn_job:hover { cursor:pointer; background:#17535a; border:1px solid #17535a; 
 .map-main .find-sector-part .sector-list ul li a.btn_job { width:49%; height:50px; float:left; margin:0px; padding:0px; background:#eff3f9; font-size:15px; color:#ffcb9f !important; font-weight:400; line-height:50px; text-align:left; border:1px solid #dddddd; border-radius:4px; text-decoration:none; font-family: 'Open Sans', sans-serif;}
 .map-main .find-sector-part .sector-list ul li a.btn_job img { float:left; margin:9px 7px 0;}
 .map-main .find-sector-part .sector-list ul li a.btn_job:hover { cursor:pointer; background:#17535a; border:1px solid #17535a; }
+
 
 /*----------------------------------
 		End Map Articles
@@ -405,17 +398,30 @@ footer .share-social .share-button{ width:112px; float:left; position:relative; 
 footer .share-social .share-button a{ width:100%; float:left; background:#90c7da; border-radius:50px; height:32px; line-height:32px; font-family: 'Open Sans', sans-serif; font-size:12px; color:#fff; font-weight:700; letter-spacing:1px; text-align:center; margin:0px; padding:0px;}
 footer .share-social .share-button .share-icon{ display:none;}
 footer .share-social .share-button .social-sharing a{ width:32px; float:left; height:32px; overflow:hidden; margin:0px 10px 0px 0px;}
-footer .share-social .share-button .social-sharing a:hover img{margin-top:-36px;  -webkit-transition: all 0.4s ease-in-out; -moz-transition: all 0.4s ease-in-out; -o-transition: all 0.4s ease-in-out; -ms-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
+footer .share-social .share-button .social-sharing a:hover img{margin-top:-36px; 
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;}
 
 footer .share-social .share-button:hover .share-icon{ width:130px; display:block; position:absolute; left:0px; top:0px; margin:0px; padding:0px; background:#fff;}
-footer .share-social .share-button:hover .share-icon ul{ width:100%; float:left; margin:0px; padding:0px; display:none;}
+footer .share-social .share-button:hover .share-icon ul{ width:100%; float:left; display:none; margin:0px; padding:0px;}
 footer .share-social .share-button:hover .share-icon ul li{ width:auto; float:left; list-style:none; margin:0px; padding:0px;}
 footer .share-social .share-button:hover .share-icon ul li a{ width:32px; height:32px; float:left; overflow:hidden; margin:0px 10px 0px 0px; padding:0;}
 footer .share-social .share-button:hover .share-icon ul li a img{ margin-top:0px; padding:0; 
--webkit-transition: all 0.4s ease-in-out; -moz-transition: all 0.4s ease-in-out; -o-transition: all 0.4s ease-in-out; -ms-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
 footer .share-social .share-button:hover .share-icon ul li a:hover img{ margin-top:-36px; 
--webkit-transition: all 0.4s ease-in-out; -moz-transition: all 0.4s ease-in-out; -o-transition: all 0.4s ease-in-out; -ms-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
-
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;}
 footer .share-social a.follow-button{ width:112px; float:left; clear:left; background:#90c7da; border-radius:50px; height:32px; line-height:32px; font-family: 'Open Sans', sans-serif; font-size:12px; color:#fff; font-weight:700; letter-spacing:1px; text-align:center; margin:9px 0px 9px 0px; padding:0px;}
 footer .copyright{width:100%; float:left; text-align:center; font-family: 'Open Sans', sans-serif; font-size:14px; text-transform:uppercase; color:#555555; line-height:24px; margin:0px; padding:0px 0px 16px 0px;}
 footer .copyright span{ display:inline-block; font-size:12px; text-transform:none; padding:0px 0px 0px 10px;}
@@ -593,7 +599,6 @@ footer .copyright span img{display:inline-block; padding-left:4px; vertical-alig
 
 
 
-
 /* Get a widget */
 .widget-main{ width:100%; float:left; margin:10px 0px 0px 0px; padding:0px;}
 .widget-main h5{ width:100%; float:left; font-size:18px; font-weight:700; color:#555; letter-spacing:1px; text-align:center; margin:0px; padding:0px;}
@@ -655,15 +660,3 @@ footer .copyright span img{display:inline-block; padding-left:4px; vertical-alig
 .widget-center .get-widget-box ul li .example-content p a{ font-size:14px; color:#555; line-height:20px; font-weight:400; margin:0px; padding:0px;}
 .widget-center .get-widget-box ul li .example-content p a:hover{color:#ff8355;}
 .widget-center .get-widget-box ul li .example-content.margin-top16{ margin-top:16px;}
-
-
-/* Hiring Manager */
-.inner_page_content{ width:100%; float:left; margin:0px; padding:0px;}
-.inner_page_content .ser_con2{ width:100%; float:left; margin:0px; padding:0px;}
-.inner_page_content .ser_con2 p{ width:100%; float:left; font-size:14px; color:#555; line-height:20px; margin:0px; padding:0px;}
-
-.hiring-form-part{ width:100%; float:left; margin:0px; padding:0px;}
-.hiring-form-part .form-left{ width:80%; max-width:100%; float:left; margin:0px; padding:0px;}
-.hiring-form-part .form-left p{ width:100%; float:left; font-size:16px; color:#555; font-weight:600; line-height:24px; text-align:center; margin:0px 0px 10px 0px; padding:0px;}
-.hiring-form-part .lady-thumb{ width:20%; float:right; margin:0px; padding:0px;}
-.hiring-form-part .lady-thumb img{ width:100%; height:auto; display:block;}
