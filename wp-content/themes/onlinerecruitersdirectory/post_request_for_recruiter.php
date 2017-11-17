@@ -55,7 +55,7 @@ get_header(); while ( have_posts() ) : the_post();  ?>
         </div>
         <div class="chang-step-part">
         	<div class="next-step">
-            <input type="submit" name="submit" id="submit" value="Send" onClick="return checkForm();"><i class="fa fa-long-arrow-right pad-0"></i></div>
+            <input type="submit" name="submit" id="submit" value="Send" class="btn_cont" onClick="return checkForm();"><i class="fa fa-long-arrow-right pad-0"></i></div>
         </div>
          <input type="hidden" name="hidn" value="1">			
         </form>
