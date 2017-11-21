@@ -45,8 +45,8 @@ if($_REQUEST['hid1'] == "1"){
     	<div class="find-firms-list">
         	<ul>
             	<li><a href="<?php echo bloginfo('home');?>/executive_job_seekers/">Executive $100k Job Seekers</a><i class="fa fa-long-arrow-right"></i></li>
-                <li><a href="<?php echo bloginfo('home');?>/free_review">Free review of your resume</a><i class="fa fa-long-arrow-right"></i></li>
-                <li><a href="<?php echo bloginfo('home');?>/our_recommendations/">Job Boards & Recruiting Services</a><i class="fa fa-long-arrow-right"></i></li>
+                <li><a href="<?php echo bloginfo('home');?>/free_review/">Free review of your resume</a><i class="fa fa-long-arrow-right"></i></li>
+                <li><a href="<?php echo bloginfo('home');?>/our_recommendations/">Job Boards & Recruiting Services</a></li>
             </ul>
         </div>
     </div>
@@ -75,7 +75,7 @@ if($_REQUEST['hid1'] == "1"){
             </div>
             <div class="need-help-right">
             	<div class="hiring-manager-button"><a href="<?php echo bloginfo('home');?>/hiring_manager/">Are you a Hiring Manager?<span>Click here</span><span>search for firms in this sector</span></a></div>
-                <div class="need-help"><a href="#">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
+                <div class="need-help"><a href="<?php echo bloginfo('home');?>/contactus/">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
             </div>
         </div>
     </div>

@@ -74,9 +74,10 @@ session_start();
                         	<div class="share-icon">
                             	<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-icon.png"/></a>
                                 <div class="other-social">
-                                	<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-gplue-icon.png"/></a>
+                                <?php echo do_shortcode('[wp_social_sharing social_options="twitter,googleplus,linkedin" twitter_username="arjun077" linkedin_text="<img src ='.get_template_directory_uri().'/images/share-linkdin-icon.png>" googleplus_text="<img src ='.get_template_directory_uri().'/images/share-gplue-icon.png>" twitter_text="<img src ='.get_template_directory_uri().'/images/share-twitter-icon.png>" icon_order="t,g,l" show_icons="0" before_button_text="" text_position="" social_image="t"]'); ?>
+                                	<!--<a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-gplue-icon.png"/></a>
                                     <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-twitter-icon.png"/></a>
-                                    <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-linkdin-icon.png"/></a>
+                                    <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-linkdin-icon.png"/></a>-->
                                 </div>
                           </div>
                         </div>
@@ -133,7 +134,7 @@ session_start();
                 <ul class="nav">
                         <li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/" class="blue">Hiring manager</a></li>
                         <li><a href="<?php bloginfo( 'home' ); ?>/job_seeker/" class="orange">Job seeker</a></li>
-                        <li><a href="<?php bloginfo( 'home' ); ?>/open-jobs-recruiters-database/">Search for recruiting firm</a></li>
+                        <li><a href="<?php bloginfo( 'home' ); ?>/search-for-recruiting-firm/">Search for recruiting firm</a></li>
                         <li><a href="<?php bloginfo( 'home' ); ?>/tools/">Tools</a></li>
                         <li><a href="<?php bloginfo( 'home' ); ?>/articles/">Articles</a></li>               
                     </ul>                        

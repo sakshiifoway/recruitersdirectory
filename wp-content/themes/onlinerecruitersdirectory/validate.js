@@ -138,3 +138,34 @@ function checkFrm()
 	}	
 	return retn;
 }
+
+
+function chksubscribe()
+{
+	var retn = true;
+	var sname = document.getElementById("sname");
+	var semail = document.getElementById("semail");
+	
+	if(sname.value == "")
+	{
+		document.getElementById("sname_error").innerHTML = "The field is required.";
+		retn = false;
+	}
+	else{
+		document.getElementById("sname_error").innerHTML = "";
+	}
+	if(semail.value == "")
+	{
+		document.getElementById("semail_error").innerHTML = "The field is required.";
+		retn = false;
+	}
+	else if(semail.value.indexOf('@',0) == -1 || semail.value.indexOf('.',0) == -1)
+	{
+		document.getElementById("semail_error").innerHTML = "The e-mail address entered is invalid.";
+		retn = false;
+	}
+	else{
+		document.getElementById("semail_error").innerHTML = "";
+	}
+	return retn;
+}

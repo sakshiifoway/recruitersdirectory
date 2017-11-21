@@ -13,6 +13,11 @@ $catId = $_SESSION['CATID'];
 echo "<br>";
 */
 
+if($_REQUEST['FromCompanyProfile'] == "YES"){
+	$_SESSION['RECRUITER_ID'][] = $_REQUEST['RECRUITER_ID'];
+}
+
+//print_r($_SESSION);
 
 if($_REQUEST['hidn'] == "1")
 {
@@ -186,8 +191,8 @@ else
     	<div class="find-firms-list">
         	<ul>
             	<li><a href="<?php echo bloginfo('home');?>/executive_job_seekers/">Executive $100k Job Seekers</a><i class="fa fa-long-arrow-right"></i></li>
-                <li><a href="<?php echo bloginfo('home');?>/free_review">Free review of your resume</a><i class="fa fa-long-arrow-right"></i></li>
-                <li><a href="<?php echo bloginfo('home');?>/our_recommendations/">Job Boards & Recruiting Services</a><i class="fa fa-long-arrow-right"></i></li>
+                <li><a href="<?php echo bloginfo('home');?>/free_review/">Free review of your resume</a><i class="fa fa-long-arrow-right"></i></li>
+                <li><a href="<?php echo bloginfo('home');?>/our_recommendations/">Job Boards & Recruiting Services</a></li>
             </ul>
         </div>
     </div>
@@ -216,7 +221,7 @@ else
             </div>
             <div class="need-help-right">
             	<div class="hiring-manager-button"><a href="<?php echo bloginfo('home');?>/hiring_manager/">Are you a Hiring Manager?<span>Click here</span><span>search for firms in this sector</span></a></div>
-                <div class="need-help"><a href="#">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
+                <div class="need-help"><a href="<?php echo bloginfo('home');?>/contactus/">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
             </div>
         </div>
     </div>
@@ -240,12 +245,16 @@ else
                         </li>
                         <li class="full-width"><textarea name="message" id="message" placeholder="* Comments" class="comment_box"></textarea></li>
                     </ul>
+                      <input type="submit" name="submit" id="submit" value="Next" onClick="return chk_SendResume();" class="sendResumeBtn">  
                 </div>
-            </div>            
+                
+            </div>   
+                  
         </div>
+       
         <div class="chang-step-part">
-        	<div class="prev-step"><i class="fa  fa-long-arrow-left"></i><input name="" type="button" value="Back"></div>
-        	<div class="next-step"><input type="submit" name="submit" id="submit" value="Next" onClick="return chk_SendResume();"><i class="fa fa-long-arrow-right pad-0"></i></div>
+        	<div class="prev-step"><i class="fa  fa-long-arrow-left"></i><input name="" type="button" value="Back" onclick="window.location='<?php echo bloginfo('home');?>/searchresult/'"></div>
+        	<div class="next-step"></div>
         </div>
          <input type="hidden" name="hidn" value="1">			
         </form>

@@ -21,16 +21,7 @@ function showwidget(widgetname)
     	<h1>Get a widget</h1>    	
         <div class="widget-main">
         	<h5>This widget lets your readers/visitors search for a particular recruiting firm, search firm, headhunter or staffing firm by category/categories or state(s) for both job seekers and hiring managers (select one).</h5>
-            <div class="widget-box-button">
-            	<div class="need-help-right">
-                    <div class="hiring-manager-button"><a href="<?php echo bloginfo('home');?>/hiring_manager/">Are you a Hiring Manager?<span>Click here</span><span>search for firms in this sector</span></a></div>
-                    <div class="need-help"><a href="#">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
-            	</div>            
-            	<div class="need-help-right">
-                    <div class="hiring-manager-button"><a href="<?php echo bloginfo('home');?>/hiring_manager/">Are you a Hiring Manager?<span>Click here</span><span>search for firms in this sector</span></a></div>
-                    <div class="need-help"><a href="#">job seeker, Need help<i class="fa fa-question-circle"></i></a></div>
-            	</div>
-            </div>
+            <?php include "button-section.php"; ?>
         </div>
         <div class="widget-center">
         	<div class="get-widget-box">

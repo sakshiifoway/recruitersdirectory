@@ -9,7 +9,6 @@ get_header(); ?>
 	<div class="container">
         <ul class="breadcrum">
             <li><a href="<?php bloginfo( 'home' ); ?>/">Home </a>&rarr;</li>
-            <li><a href="<?php bloginfo( 'home' ); ?>/job_seeker/">Job seeker </a>&rarr;</li>
             <li><?php the_title(); ?></li>
         </ul>
         <?php
@@ -18,7 +17,7 @@ get_header(); ?>
 			$state_cnt = count($state_rows);
 			$i=0;
 			if($state_cnt>0) {
-				$state_cnt_half = ceil($state_cnt/3);
+				$state_cnt_half = ceil($state_cnt/4);
 		?>
         <h1>Recruiting Firm by State</h1>
     	<div class="job-center">
@@ -51,7 +50,7 @@ get_header(); ?>
 			$occupation_cnt = count($occupation_rows);
 			$j=0;
 			if($occupation_cnt>0) {
-				$occupation_cnt_half = ceil($occupation_cnt/3);
+				$occupation_cnt_half = ceil($occupation_cnt/4);
 		?>
         <h1>Recruiting Firm by Sector</h1>
     	<div class="job-center">
@@ -80,5 +79,4 @@ get_header(); ?>
     </div>
 </section>
 <!--- Inner End --->
-
 <?php get_footer();

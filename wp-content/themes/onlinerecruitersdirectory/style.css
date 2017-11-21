@@ -99,3 +99,164 @@ Styles based on Normalize v5.0.0 @link https://github.com/necolas/normalize.css
 	line-height:30px;
 	border:1px solid #f0f0f0;
 }
+
+/*----------------contact form----------------*/
+.contact-center .contact-form ul li input[type="email"] {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-color: #03363d;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #03363d;
+    float: left;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 10px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.contact-center .contact-form ul li input[type="email"]::placeholder {
+    color: #03363d;
+    opacity: 1;
+}
+.contact-center .contact-form ul li input[type="submit"], .get-widget-box input[type="submit"], .sendResumeBtn {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #03363d;
+    border-radius: 5px;
+    color: #03363d;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    height: 60px;
+    letter-spacing: 3px;
+    line-height: 60px;
+    margin: 16px 0 0;
+    padding: 0 60px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+}
+.contact-center .contact-form ul li input[type="submit"]:hover,.get-widget-box input[type="submit"]:hover,.sendResumeBtn:hover { background:#03363d; color:#fff;}
+div.wpcf7-validation-errors { display:none !important; }
+span.wpcf7-not-valid-tip { color:#f00 !important; text-align:left; font-size:13px; float:left; }
+div.wpcf7-mail-sent-ng { float:left; color:#f00; text-align:center; width:100%; margin:10px; border:none; }
+/*----------------contact form----------------*/
+
+.archive-list .fa {
+    display: inline-block;
+    padding: 0 10px 0 0;
+}
+.contact-center .contact-form ul li select { width:100%; height:40px; line-height:40px; float:left; margin:0px; padding:0 10px; font-size:14px; font-weight:700; color:#03363d; background:none; border:1px solid #03363d; border-width:0px 0px 1px 0px; text-transform:uppercase;}
+.frm_error { color:#f00 !important; font-size:13px; text-align:left; float:left; width:100%; }
+.captcha_img { width:40%; float:right; margin-top:10px; }
+.SuccessMsgCls { color:#0077a1; font-size:15px; float:left; width:100%; text-align:center; margin-bottom:10px; }
+.ErrorMsgCls { color:#F00; font-size:15px; float:left; width:100%; text-align:center; margin-bottom:10px; }
+.txt-center { text-align:center; }
+.inner_page_content ol, .inner_page_content ol li { list-style:decimal; font-size:14px; }
+.inner_page_content ol li { margin-bottom:15px; }
+/*.inner_page_content ul { padding:0 0 0 40px; }
+.inner_page_content ul li{ list-style:disc; }*/
+
+.inner_page_content ul {
+  width:100%;
+  float:left;
+  list-style: none;
+  padding:0 0 0 40px;
+  font-size:14px;
+}
+.inner_page_content ul li {
+	margin:10px 0;
+}
+.inner_page_content ul li:before {
+  	content: "\f178"; /* FontAwesome Unicode */
+  	font-family: FontAwesome;
+	display: inline-block;
+ 	/*padding-right:10px;*/
+	margin-left: -1.5em; /* same as padding-left set on li */
+	width: 1.5em;
+}
+.inner_page_content .contact-form ul li:before { content: ""; }
+
+.HiringManager_UL ul{
+	margin:0;
+	/*padding:0;*/
+	width:50%;
+	float:left;
+}
+.blankdiv{
+	width:100%; float:left;
+}
+.widgetClass{
+	float:left; 
+	width:100%;
+}
+.widgetTitle, .widgetTitle h3{
+	float:left;
+	text-align:center;
+	width:100%;
+}
+.sector-list ul li a, .alfabet-character ul li a { cursor:pointer; }
+.widget-center .get-widget-box ul.Comp_prof_detail{
+	width:70%; float:left;
+}
+.widget-center .get-widget-box ul.Comp_prof_detail li{
+	width:100%; margin-bottom:0px; padding-bottom:5px;
+}
+.widget-center .get-widget-box ul.Comp_prof_detail li span{ width:15%; float:left;}
+.widget-center .get-widget-box ul.Comp_prof_detail li div{
+	width:85%; float:right;
+}
+.widget-center .get-widget-box ul.Comp_prof_img{
+	width:30%; float:right; padding-left:5%; padding-top:2%
+} 
+
+.widget-center .get-widget-box ul.Comp_prof_img img{
+	padding:3px; border:3px double #FF8355;
+}
+
+.inner_page_content hr{color:#eee; }
+
+.companyprofile_category{
+	width:100%; float:left;
+	padding:5px 20px 5px 20px;
+}
+
+.companyprofile_category h2{
+	margin-bottom:5px;
+}
+
+.widget-center .get-widget-box h5.company_name{
+	width:100%; float:left; text-align:left; padding-left:15px;
+}
+.coupon_img {
+    background-image: url(images/coupons_bg.jpg);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: normal;
+    padding:0px;
+	margin:0px;
+    text-align: center;
+    width: 130px;
+	height:24px;
+}
+.coupon_img label{ display:inline-block; line-height:24px; color:#fff; padding:0px 18px 0px 8px; zoom:1;}
+
+#ComapnyProfile_backbtn {
+	float:left; margin:0px; padding:20px 0px 50px 20px !important;
+}
+.sendResumeBtn{
+	margin-left:39%;
+}
+
+.SuccessMsgClsTips { color:#0077a1; font-size:13px; float:left; width:100%; text-align:center; }
+.ErrorMsgClsTips { color:#F00; font-size:13px; float:left; width:100%; text-align:center; }

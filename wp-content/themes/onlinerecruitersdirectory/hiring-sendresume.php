@@ -5,7 +5,7 @@
 
 get_header(); 
 
-print_r($_SESSION);
+//print_r($_SESSION);
 $query=$_SESSION["RECURITERQUERY"];
 $ses_result = $wpdb->get_results($sql);
 $totalrows=0;
@@ -18,14 +18,22 @@ while ( have_posts() ) : the_post();
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <!-- #primary -->
+	<section class="inner_page" style="padding-bottom:10px;">
+	<div class="container">
+    <ul class="breadcrum">
+    	<li><a href="<?php echo bloginfo('home');?>/">Home </a>&rarr;</li>
+        <li>Hiring Managers</li>
+    </ul>
+    	<h1><?php //the_title();?>Hiring Manager Services</h1>    	
+    </div>
+    <div class="container"><div class="inner_page_content HiringManager_UL"><p><?php the_content();?></p></div></div>
+</section>
+<!--- Inner End --->
 
-<div class="center">
-  <div class="pattern_bg">
-    <div class="center">
-      <h1>
-        <?php the_title(); ?>
-      </h1>
-      <!--   <form name="sendresume" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="post" onsubmit="return chk();"> -->
+
+
+<section>
+	<div class="container">
       <form name="sendresume"  id="sendresume" action="https://www.salesforce.com/asdservlet/servlet.WebToLead?encoding=UTF-8" method="post">
         <input type=hidden name="oid" value="00D700000008MxZ">
         <input type=hidden name="retURL" value="http://www.onlinerecruitersdirectory.com/thank-you-hiring-recommendations.php">
@@ -46,71 +54,30 @@ while ( have_posts() ) : the_post();
         <!-- Ord count of pageviews:  -->
         <input type="hidden" id="00N70000003XXwL" maxlength="25" name="00N70000003XXwL" size="20" value="333" />
         <!-- Ord count of pageviews:  <input type="hidden" id="ORD_Source__c" maxlength="25" name="ORD_Source__c" size="20" value="ORD-SOURCE" /> -->
-        
-        <div class="sepret_inr">
-          <div class="step_one">
-            <div class="step_form">
-              <div class="form_title" style="font-size:24px;">
-                <?php the_content();?>
-                </span></div>
-              <div class="from_prt">
-                <div class="form_fl">
-                  <div class="form_full">
-                    <input type="text" value="" placeholder="Name" id="first_name" name="first_name" class="ipt_step">
-                    <input type="hidden" name="last_name" id="last_name" value="LNAME" />
-                  </div>
+    	<div class="search-center">
+        	<div class="search-full">
+            	<!--<h6>Add your information and comments Contact with Wireless</h6>-->
+            	<div class="step3-infor-contanct">
+                	<ul>
+                    	<li><input placeholder="* Name"  id="first_name" name="first_name" type="text" /> <input type="hidden" name="last_name" id="last_name" value="LNAME" /></li>
+                        <li><input type="text" placeholder="Phone" id="phone" name="phone"></li>
+                        <li><input type="text" placeholder="* Email" id="email" name="email"></li>
+                        <li><input type="text" placeholder="Company" id="company" name="company"></li>                       
+                        <li class="full-width"><textarea id="00N70000003XZif" name="00N70000003XZif" placeholder="* Comments" class="comment_box"></textarea></li>
+                    </ul>
                 </div>
-                <div class="form_fl">
-                  <div class="form_full">
-                    <input type="text" value="" placeholder="Phone" id="phone" name="phone" class="ipt_step">
-                  </div>
-                </div>
-                <div class="form_fl" style="margin:0;">
-                  <div class="form_full">
-                    <input type="text" value="" placeholder="Company" id="company" name="company" class="ipt_step">
-                  </div>
-                </div>
-                <div class="form_fl">
-                  <div class="form_full">
-                    <input type="text" value="" placeholder="Email" id="email" name="email" class="ipt_step">
-                  </div>
-                </div>
-                <div class="msg_boxstep">
-                  <textarea  id="00N70000003XZif" name="00N70000003XZif" rows="3" type="text" style="height:30px;" wrap="soft" placeholder="Comments" class="comment_box"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--<div class="back"><a href="hiring_manager.php">Back</a></div>-->
-          
-          <input type="hidden" name="Submit1" value="1">
-          <input type="hidden" name="type" value="Company" />
-          <div class="step_nextprt">
-            <div class="next"> 
-              <!--  <input type="submit" name="submit" value="I want a Free Consultation"/> -->
-              <input type="submit" name="SUBMIT" id="btn_submit"  style="text-align:center" onclick="return checkForm();" value="Continue"/>
-              <Br>
-              <!-- <a href="javascript:;" onclick="aSubmit();">I want a Free Consultation</a> --> 
-              
-            </div>
-            <!-- <a href="#" class="start_search">Start new search</a> --> 
-            
-          </div>
+            </div>            
         </div>
-      </form>
-      <div class="why-trust">
-        <h2>Why use our services?</h2>
-        <div class="box">
-          <div class="points">Database of over 10,000 recruitment firms</div>
-          <div class="points">Assisted over 15,000 HR managers</div>
-          <div class="partners"> <img src="images/partner_1.jpg" alt=""/><img src="images/partner_2.jpg" alt=""/><img src="images/partner_3.jpg" alt=""/><img src="images/partner_4.jpg" alt=""/><img src="images/partner_5.jpg" alt=""/><img src="images/partner_6.jpg" alt=""/><img src="images/partner_7.jpg" alt=""/><img src="images/partner_8.jpg" alt=""/> </div>
+        <div class="chang-step-part">
+        	<div class="prev-step"><i class="fa  fa-long-arrow-left"></i><input name="" type="button" value="Back" onClick="window.location='<?php bloginfo('home'); ?>/hiring_manager/'"></div>
+        	<div class="next-step"><input type="submit" name="submit" id="submit" value="Next" onClick="return checkForm();"><i class="fa fa-long-arrow-right pad-0"></i></div>
         </div>
-      </div>
-      <div class="chat-call2"><a href="javascript:$zopim.livechat.window.show()"><img src="images/online_chat.png" alt=""/></a> 
-        <!-- <a href="#"><img src="images/click-to-call.png" alt=""/></a> --> <a href="#"><img src="images/dia-now2.png" alt=""/></a></div>
+         <input type="hidden" name="hidn" value="1">			
+        </form>
     </div>
-  </div>
-</div>
+</section>
+
+
 <?php endwhile; ?>
 <script type="text/javascript">
 /*if(source!= undefined && source != '')
@@ -147,11 +114,16 @@ function checkForm()
 		err+="Please Enter Email.\n";
 		//errflg = false;
 	}	
-	/*if(email.indexOf('@',0) == -1 || email.indexOf('.',0) == -1)
+	if(email!="" && (email.indexOf('@',0) == -1 || email.indexOf('.',0) == -1))
 	{
 	   err+="Email address seems incorrect (check @ and .'s)";
 	   errflg = false;
-	}else{}*/
+	}else{}
+	if(company=="")
+	{
+		err+="Please Add Comments.\n";
+		errflg = false;
+	}
 	//alert(err);
 	if(err != ""){
 		alert(err);

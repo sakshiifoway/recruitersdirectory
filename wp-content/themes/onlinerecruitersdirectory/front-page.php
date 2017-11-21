@@ -48,6 +48,7 @@ if($_REQUEST['hdn_conatct'] == "1")
 	//echo $content;
 	//exit;
 	SendHTMLMail($to,$subject,$content,$from);
+	$contact_msg = "success";
 	
 //	header("Location:message.php?4");
 }
@@ -80,8 +81,8 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                 <option value="">STATE</option>
                 <?php $hdr_states = $wpdb->get_results("SELECT * from state order by name ASC");				
 				foreach ($hdr_states as $hdr_st) {  ?>                  
-	                <option value="<?php echo $hdr_st->id;?>"><?php echo $hdr_st->name; ?></option>
-                <? } ?>
+	                <option value="<?php echo $hdr_st->id;?>"><?php echo trim(stripslashes($hdr_st->name)); ?></option>
+                <?php } ?>
                   </select>
                 </div>
               </li>
@@ -91,8 +92,8 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                 <option value="">SECTOR</option>
                 <?php $hdr_cat = $wpdb->get_results("SELECT * from category order by categoryname ASC");				
 				foreach ($hdr_cat as $hdr_ct) {  ?>                  
-	                <option value="<?php echo $hdr_ct->categoryid;?>"><?php echo $hdr_ct->categoryname; ?></option>
-                <? } ?>
+	                <option value="<?php echo $hdr_ct->categoryid;?>"><?php echo trim(stripslashes($hdr_ct->categoryname)); ?></option>
+                <?php } ?>
                   </select>
                 </div>
               </li>
@@ -137,10 +138,10 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
   <div class="container">
     <div class="testimonial-inner">
       <ul>
-        <li><a class="database" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow.png"/><?php echo $flds2['wtu_line_1'];?></a></li>
-        <li><?php echo $flds2['wtu_line_3'];?></li>
-        <li><?php echo $flds2['wtu_line_4'];?></li>
-        <li><?php echo $flds2['wtu_line_5'];?></li>
+        <li><a class="database" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow.png"/><?php echo strip_tags($flds2['wtu_line_1'],'<span>');?></a></li>
+        <li><?php echo strip_tags($flds2['wtu_line_3'],'<span>');?></li>
+        <li><?php echo strip_tags($flds2['wtu_line_4'],'<span>');?></li>
+        <li><?php echo strip_tags($flds2['wtu_line_5'],'<span>');?></li>
         <li><a class="assisted" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow.png"/><?php echo $flds2['wtu_line_2'];?></a></li>
       </ul>
     </div>
@@ -173,7 +174,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
 							'cat' => 98, // Number of recent posts thumbnails to display
 							'post_status' => 'publish' // Show only the published posts
 						)); ?>
-            <h3><?php echo $recent_posts[0]['post_title'];?> </h3>
+            <h3><?php echo get_title_by_id($recent_posts[0]['ID'],5);//echo $recent_posts[0]['post_title'];?> </h3>
             <p><?php echo get_excerpt_by_id($recent_posts[0]['ID'],10); //echo get_excerpt($recent_posts[0]['ID']); ?>
               <?php //echo get_the_excerpt($recent_posts[0]['ID']);?>
             </p>
@@ -205,7 +206,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
         </li>
         <li>
           <div  class="recruiters">
-            <h3><?php echo $recent_posts[1]['post_title'];?> </h3>
+            <h3><?php echo get_title_by_id($recent_posts[1]['ID'],5); //echo $recent_posts[1]['post_title'];?> </h3>
             <p><?php echo get_excerpt_by_id($recent_posts[1]['ID'],15);?></p>
             <div class="name-btn"> 
               <!-- <div class="name">By Elaine Boylan </div>--> 
@@ -218,649 +219,94 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
 </section>
 <?php // print_r($recent_posts); ?>
 <section class="map-main">
-  <div class="container">
-    <div class="col-sm-1 fl">
-      <div class="map-main-part">
-        <h2>Select a state</h2>
-        <h5>where you’d like to find<br>
-          an executive recruiters/head hunters search firm</h5>
-        <div class="map_main">
-          <ul>
-            <li class="washington">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Washington</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
+  	<div class="container">
+        <div class="col-sm-1 fl">
+            <div class="map-main-part">
+                <h2>Select a state</h2>
+                <h5>where you’d like to find<br>
+                  an executive recruiters/head hunters search firm</h5>
+                <div class="map_main">
+                    <ul>
+						<?php 
+                            $state_query = $wpdb->get_results("SELECT * from state where map_slug != '' order by name ASC");
+                            foreach ($state_query as $state_query_new) {
+                        ?>
+                        <li class="<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" onclick="return show_maptooltip('<?php echo trim(stripslashes($state_query_new->map_slug)); ?>');">
+                            <div class="map-tooltip" id="map_tooltipID_<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" style="display:none">
+                                <div class="tooltip-inner">
+                                  	<div class="pop_title"> <strong><?php echo trim(stripslashes($state_query_new->name)); ?></strong>
+                                    	<p>Search for recuiting agency. executive recuiters or headhunters</p>
+                                  	</div>
+                                  	<?php /*?><a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo $state_query_new->state_alias; ?>">Hiring manager1</a>
+                                  	<a class="btn_hir" href="<?php echo home_url(); ?>/job_seeker/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo $state_query_new->state_alias; ?>">Job seeker1</a><?php */?>
+                                    <a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
+                                    <a class="btn_job fr" href="<?php echo home_url(); ?>/job_seeker/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
+                                </div>
+                            </div>
+                        </li>
+                    	<?php } ?>
+                    </ul>
                 </div>
-              </div>
-            </li>
-            <li class="oregon">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Oregon</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="ldaho">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Idaho</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="montana">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Montana</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="california">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>California</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="nevada">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Nevada</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="wyoming">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Wyoming</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="utah">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Utah</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="arizona">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Arizona</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="colorado">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Colorado</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="new_mexico">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>New mexico</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="texas">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Texas</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="alaska">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Alaska</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="hawaii">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Hawaii</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="north_dakota">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>North Dakota</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="south_dakota">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>South Dakota</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="nebraska">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Nebraska</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="kansas">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Kansas</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="oklahoma">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Oklahoma</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="minnesota">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Minnesota</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="lowa">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Lowa</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="missouri">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Missouri</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="arkansas">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Arkansas</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="louisiana">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Louisiana</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="wisconsin">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Wisconsin</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="illinois">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Illinois</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="michigan">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Michigan</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="indiana">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Indiana</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="ohio">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Ohio</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="kentucky">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Kentucky</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="tennessee">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Tennessee</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="mississippi">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Mississippi</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="alabama">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Alabama</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="georgia">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Georgia</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="florida">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Florida</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="newyork">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>New York</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="pennsylvania">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>pennsylvania</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="vt">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>VT</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="nh">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>NH</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="maine">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Maine</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="ma">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>MA</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="ct">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>CT</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="ri">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>RI</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="nj">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>NJ</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="west_virginia">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>West Virginia</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="virginia">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>Virginia</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="md">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>MD</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="de">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>DE</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="north_carolina">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>North_Carolina</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-            <li class="south_carolina">
-              <div class="map-tooltip">
-                <div class="tooltip-inner">
-                  <div class="pop_title"> <strong>South_Carolina</strong>
-                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
-                  </div>
-                  <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                  <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                </div>
-              </div>
-            </li>
-          </ul>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm-2 fr">
-      <div class="find-sector-part">
-        <h5>Find a Headhunter or a Recruiter by Sector</h5>
-        <div class="find-sector">
-          <select name="">
-            <option>TYPE SECTOR FOR QUICK SEARCH</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="find-character-part">
-          <div class="alfabet-character">
-            <ul>
-              <li class="active"><a href="#">A</a></li>
-              <li><a href="#">b</a></li>
-              <li><a href="#">c</a></li>
-              <li><a href="#">d</a></li>
-              <li><a href="#">e</a></li>
-              <li><a href="#">f</a></li>
-              <li><a href="#">g</a></li>
-              <li><a href="#">h</a></li>
-              <li><a href="#">i</a></li>
-              <li><a href="#">j</a></li>
-              <li><a href="#">k</a></li>
-              <li><a href="#">l</a></li>
-              <li><a href="#">m</a></li>
-              <li><a href="#">n</a></li>
-              <li><a href="#">o</a></li>
-              <li><a href="#">p</a></li>
-              <li><a href="#">q</a></li>
-              <li><a href="#">r</a></li>
-              <li><a href="#">s</a></li>
-              <li><a href="#">t</a></li>
-              <li><a href="#">u</a></li>
-              <li><a href="#">v</a></li>
-              <li><a href="#">w</a></li>
-              <li><a href="#">x</a></li>
-              <li><a href="#">y</a></li>
-              <li><a href="#">z</a></li>
-            </ul>
-          </div>
-          <div class="sector-list">
-            <ul>
-              <li><a href="#">Accounting</a></li>
-              <li><a href="#">Actuaries</a></li>
-              <li><a href="#">Administrative</a></li>
-              <li> <a href="#" class="active">Advertising</a>
-                <div class="tooltip-main">
-                  <div class="tooltip-inner">
-                    <div class="pop_title"> <strong>Advertising</strong>
-                      <p>Search for recruiting agency, executive recruiters or headhunters </p>
+        <div class="col-sm-2 fr">
+            <div class="find-sector-part">
+                <h5>Find a Headhunter or a Recruiter by Sector</h5>
+                <div class="find-sector">
+                    <?php $Sector_query = $wpdb->get_results("SELECT * from category order by categoryname ASC"); ?> 
+                    <select name="sector_dropdown" id="sector_dropdown" onchange="return redirectToJobSeeker(this.value);">
+                        <option value="">SELECT SECTOR</option>
+                        <?php if(count($Sector_query)>0) {
+                                foreach ($Sector_query as $Sector_query_new) { ?>
+                        <option value="<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_query_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_query_new->category_slug)); ?>"><?php echo trim(stripslashes($Sector_query_new->categoryname)); ?></option>
+                        <?php } } ?>
+                    </select>
+                </div>
+                <div class="find-character-part">
+                    <div class="alfabet-character">
+                        <ul>
+                            <?php $alphabet_array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+                                foreach($alphabet_array as $alphabet_array_new)
+                                {
+                                    if($alphabet_array_new == 'a') { $alpha_selcls = "active"; } else { $alpha_selcls = ""; }
+                            ?>
+                            <li class="alphabet_li <?php echo $alpha_selcls; ?>" id="alfabet-character-li-<?php echo $alphabet_array_new; ?>"><a onclick="return display_sectors('<?php echo $alphabet_array_new; ?>','<?php echo get_template_directory_uri(); ?>');"><?php echo $alphabet_array_new; ?></a></li>
+                            <?php } ?>
+                        </ul>
                     </div>
-                    <button class="btn_hir"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</button>
-                    <button class="btn_job fr"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</button>
-                  </div>
+                    <div class="sector-list">
+                        <ul id="sector_data">
+                            <?php $cval = 'a'; //echo "SELECT * from category where categoryname LIKE '$cval%' order by categoryname ASC";
+                            $Sector_listquery = $wpdb->get_results("SELECT * from category where categoryname LIKE '$cval%' order by categoryname ASC"); ?>
+                            <?php if(count($Sector_listquery)>0) {
+                                    foreach ($Sector_listquery as $Sector_listquery_new) { ?>
+                            <li><a><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></a>
+                                <div class="tooltip-main">
+                                    <div class="tooltip-inner">
+                                        <div class="pop_title">
+                                            <strong><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></strong>
+                                            <p>Search for recruiting agency, executive recruiters or headhunters </p>
+                                        </div>
+                                        <a class="btn_hir" onclick="window.location='<?php echo home_url(); ?>/hiring_manager/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
+                                        <a class="btn_job fr" onclick="window.location='<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php } } ?>
+                        </ul>
+                    </div>
                 </div>
-              </li>
-              <li><a href="#">Aerospace</a></li>
-              <li><a href="#">Agriculture</a></li>
-              <li><a href="#">Apparel</a></li>
-              <li><a href="#">Architects</a></li>
-              <li><a href="#">Assets Management</a></li>
-              <li><a href="#">Automotive</a></li>
-            </ul>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+  	</div>
 </section>
 <?php $flds3 = get_fields(227);
-$flds4 = get_fields(208);
-//print_r($flds3);?>
+$flds4 = get_fields(208); ?>
 <section class="hiri-manager-main">
   <div class="mngr_left"> <img src="<?php echo $flds3['home_section_image'];?>" alt="">
     <div class="mngr_left_cont"> <span><?php echo $flds3['home_section_title'];?></span>
       <p><?php echo $flds3['home_section_content'];?></p>
-      <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a> </div>
+      <a class="rd_more" href="<?php echo get_the_permalink(227);?>">Read More</a> </div>
   </div>
   <div class="mngr_mid">
     <div class="tp_title">
@@ -874,13 +320,13 @@ $flds4 = get_fields(208);
           <input type="text" class="input_fld" name="hcontact_name" id="hcontact_name" placeholder="NAME*" >
         </div>
         <div class="fr_fild">
-          <input type="text" class="input_fld" name="phone" id="phone" placeholder="PHONE*" >
+          <input type="text" class="input_fld" name="phone" id="phone" placeholder="PHONE" >
         </div>
         <div class="fr_fild">
           <input type="text" class="input_fld" name="email" id="email" placeholder="EMAIL*" >
         </div> 
         <div class="fr_fild">
-          <textarea name="complain_details" id="complain_details" placeholder="YOUR MESSAGE"></textarea>
+          <textarea name="complain_details" id="complain_details" placeholder="YOUR MESSAGE*"></textarea>
         </div> 
         <br clear="all">
         <center>
@@ -896,19 +342,67 @@ $flds4 = get_fields(208);
       <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a> </div>
   </div>
 </section>
+<!--- Section End --->
+
 <script>
 function valAdd(val){
 	$("#valaddvalue").val(val);
 }
+
 $('#HeaderGo').click(function(){
 	var valnew = $("#valaddvalue").val();
-	//alert(valnew);
 	if(valnew == "Manager"){ 
 	   $('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'/');		   
 	}else{
 		$('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'/');		   
 	}
 });
+
+function show_maptooltip(id)
+{
+	$("#map_tooltipID_"+id).show();
+}
+
+function ClickOutsideCheck(e)
+{
+	var el = e.target;
+	var popup = $('.map-tooltip:visible')[0];
+	if(popup==undefined) return true;
+	
+	while (true){
+		if (el == popup ) {
+		  	return true;
+		} else if (el == document) {
+		  	$('.map-tooltip:visible').attr('style','display:none');
+		  	return false;
+		} else {
+		  	el = $(el).parent()[0];
+		}
+	}
+};
+
+$(document).bind('mousedown.popup', ClickOutsideCheck);
+$(document).bind('mouseover', ClickOutsideCheck);
+
+function redirectToJobSeeker(val)
+{
+	window.location=val;
+}
+
+function display_sectors(cval,path)
+{
+	$.ajax({
+		type: "POST",
+		url: path+"/ajax_sector_list.php",
+		data: "cval="+cval,
+		dataType: '',
+		async: true,
+		success:function(data){
+			$(".alphabet_li").removeClass('active');
+			$("#alfabet-character-li-"+cval).addClass('active');
+			$("#sector_data").html(data);
+		}
+	});	
+}
 </script>
-<!--- Section End --->
 <?php get_footer();
