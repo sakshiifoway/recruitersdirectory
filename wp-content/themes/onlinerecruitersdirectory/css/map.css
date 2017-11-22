@@ -309,29 +309,38 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.vt { width:27px; height:50px; left:817px; top:83px; }
 .map_main ul li.vt:hover {background-size:100% 100%;}
+.map_main ul li.vt .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.vt .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.nh { width:27px; height:56px; left:837px; top:75px; }
 .map_main ul li.nh:hover {background-size:100% 100%;}
+.map_main ul li.nh .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.nh .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.maine { width:60px; height:93px; left:845px; top:27px; }
 .map_main ul li.maine:hover {background-size:100% 100%;}
+.map_main ul li.maine .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.maine .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.ma { width:54px; height:28px; left:828px; top:121px; }
 .map_main ul li.ma:hover { background-size:100% 100%;}
-
-
+.map_main ul li.ma .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.ma .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.ct { width:29px; height:28px; left:829px; top:142px; z-index:42; }
 .map_main ul li.ct:hover { background-size:100% 100%;}
+.map_main ul li.ct .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.ct .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.ri { width:15px; height:16px; left:855px; top:139px; z-index:43; }
 .map_main ul li.ri:hover { background-size:100% 100%; }
+.map_main ul li.ri .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.ri .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.nj { width:23px; height:47px; left:809px; top:167px; z-index:44; }
 .map_main ul li.nj:hover { background-size:100% 100%; }
-
-
-
+.map_main ul li.nj .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.nj .map-tooltip .tooltip-inner::after { left:90%;}
 
 
 .map_main ul li.west_virginia { width:77px; height:66px; left:700px; top:200px;}
@@ -343,9 +352,13 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 
 .map_main ul li.md { width:71px; height:34px; left:751px; top:200px; z-index:47; cursor:pointer; }
 .map_main ul li.md:hover { background-size:100% 100%; }
+.map_main ul li.md .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.md .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.de { width:20px; height:26px; left:805px; top:199px; z-index:48; cursor:pointer; }
 .map_main ul li.de:hover { background-size:100% 100%; }
+.map_main ul li.de .map-tooltip .tooltip-inner { transform:translate(-280px, 0px); }
+.map_main ul li.de .map-tooltip .tooltip-inner::after { left:90%;}
 
 .map_main ul li.north_carolina { width:138px; height:60px; left:687px; top:263px; z-index:50; }
 .map_main ul li.north_carolina:hover { background-size:100% 100%; }
@@ -355,7 +368,7 @@ box-shadow: 9px 9px 5px 0px rgba(85,85,85,0.75); }
 }
 
 @media screen and (max-width: 1279px) {
-.map_main{ overflow-x:auto; padding:20px 50px 0 30px; height:auto;}
+.map_main{ overflow-x:auto; padding:130px 50px 0 30px; height:600px;}
 
 
 }

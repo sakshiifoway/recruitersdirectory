@@ -147,7 +147,7 @@ Styles based on Normalize v5.0.0 @link https://github.com/necolas/normalize.css
 .contact-center .contact-form ul li input[type="submit"]:hover,.get-widget-box input[type="submit"]:hover,.sendResumeBtn:hover { background:#03363d; color:#fff;}
 div.wpcf7-validation-errors { display:none !important; }
 span.wpcf7-not-valid-tip { color:#f00 !important; text-align:left; font-size:13px; float:left; }
-div.wpcf7-mail-sent-ng { float:left; color:#f00; text-align:center; width:100%; margin:10px; border:none; }
+div.wpcf7-mail-sent-ng { float:left; color:#f00; font-size:14px; text-align:center; width:100%; margin:10px; border:none; }
 /*----------------contact form----------------*/
 
 .archive-list .fa {
