@@ -155,7 +155,7 @@ div.wpcf7-mail-sent-ng { float:left; color:#f00; font-size:14px; text-align:cent
     padding: 0 10px 0 0;
 }
 .contact-center .contact-form ul li select { width:100%; height:40px; line-height:40px; float:left; margin:0px; padding:0 10px; font-size:14px; font-weight:700; color:#03363d; background:none; border:1px solid #03363d; border-width:0px 0px 1px 0px; text-transform:uppercase;}
-.frm_error { color:#f00 !important; font-size:13px; text-align:left; float:left; width:100%; }
+.frm_error { color:#a90d0d !important; font-size:13px; text-align:left; float:left; width:100%; }
 .captcha_img { width:40%; float:right; margin-top:10px; }
 .SuccessMsgCls { color:#0077a1; font-size:15px; float:left; width:100%; text-align:center; margin-bottom:10px; }
 .ErrorMsgCls { color:#F00; font-size:15px; float:left; width:100%; text-align:center; margin-bottom:10px; }
@@ -260,3 +260,22 @@ div.wpcf7-mail-sent-ng { float:left; color:#f00; font-size:14px; text-align:cent
 
 .SuccessMsgClsTips { color:#0077a1; font-size:13px; float:left; width:100%; text-align:center; }
 .ErrorMsgClsTips { color:#F00; font-size:13px; float:left; width:100%; text-align:center; }
+#NewsletterMessage ul{
+	list-style:none;
+	display:inline;
+	margin:0;
+	padding:0;
+}
+
+#NewsletterMessage ul li span{
+	margin-left:15px;
+	color:#555555 !important;
+ }
+#inline1 div{
+	text-align:center;
+}
+#inline1 h3{
+	font-size:25px;
+}
+#inline1 h3 span{
+	color:#ff8355;}

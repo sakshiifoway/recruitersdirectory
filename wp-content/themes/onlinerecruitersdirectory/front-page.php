@@ -62,7 +62,32 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
 		
 ?>
 <!--- Banner Start --->
+<?php if($_REQUEST["opt"]=="success")
+{
+	echo "<a class='fancybox' href='thankyou.html'></a>"; ?>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$.fancybox.open({
+		'width' : '90%',
+		'height' : '95%',
+		'maxWidth' : '90%',
+		'maxHeight' : '95%',
+		'autoScale' : true,
+		'transitionIn' : 'none',
+		'transitionOut' : 'none',
+		'type' : 'iframe', 
+		'href' : '<?php echo bloginfo('home'); ?>/newsletter-subscribed-successfully.php'
+	});
 
+});
+history.pushState('', document.title, '<?php echo bloginfo('home'); ?>');
+</script>
+<style type="text/css">
+.fancybox-custom .fancybox-skin {
+	box-shadow: 0 0 50px #222;
+}
+</style>
+<?php }?>
 <div class="main-banner"> <img src="<?php echo $bannerImg;?>"/>
   <div class="banner-caption">
     <div class="container">
@@ -103,7 +128,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                     <div class="control-group">
                       <label class="control control--checkbox">
                       <img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png"/>I'M A HIRING MANAGER
-                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="Manager" checked="checked" onclick="valAdd('hiring_manager');"/>
+                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="Manager" checked="checked" onClick="valAdd('hiring_manager');"/>
                       <div class="control__indicator"></div>
                       </label>
                     </div>
@@ -112,7 +137,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                     <div class="control-group">
                       <label class="control control--checkbox">
                       <img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png"/>I'M A JOB SEEKER
-                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="job-seeker" onclick="valAdd('job_seeker');"/>
+                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="job-seeker" onClick="valAdd('job_seeker');"/>
                       <div class="control__indicator"></div>
                       </label>
                     </div>
@@ -231,7 +256,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                             $state_query = $wpdb->get_results("SELECT * from state where map_slug != '' order by name ASC");
                             foreach ($state_query as $state_query_new) {
                         ?>
-                        <li class="<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" onclick="return show_maptooltip('<?php echo trim(stripslashes($state_query_new->map_slug)); ?>');">
+                        <li class="<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" onClick="return show_maptooltip('<?php echo trim(stripslashes($state_query_new->map_slug)); ?>');">
                             <div class="map-tooltip" id="map_tooltipID_<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" style="display:none">
                                 <div class="tooltip-inner">
                                   	<div class="pop_title"> <strong><?php echo trim(stripslashes($state_query_new->name)); ?></strong>
@@ -254,7 +279,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                 <h5>Find a Headhunter or a Recruiter by Sector</h5>
                 <div class="find-sector">
                     <?php $Sector_query = $wpdb->get_results("SELECT * from category order by categoryname ASC"); ?> 
-                    <select name="sector_dropdown" id="sector_dropdown" onchange="return redirectToJobSeeker(this.value);">
+                    <select name="sector_dropdown" id="sector_dropdown" onChange="return redirectToJobSeeker(this.value);">
                         <option value="">SELECT SECTOR</option>
                         <?php if(count($Sector_query)>0) {
                                 foreach ($Sector_query as $Sector_query_new) { ?>
@@ -270,7 +295,7 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                                 {
                                     if($alphabet_array_new == 'a') { $alpha_selcls = "active"; } else { $alpha_selcls = ""; }
                             ?>
-                            <li class="alphabet_li <?php echo $alpha_selcls; ?>" id="alfabet-character-li-<?php echo $alphabet_array_new; ?>"><a onclick="return display_sectors('<?php echo $alphabet_array_new; ?>','<?php echo get_template_directory_uri(); ?>');"><?php echo $alphabet_array_new; ?></a></li>
+                            <li class="alphabet_li <?php echo $alpha_selcls; ?>" id="alfabet-character-li-<?php echo $alphabet_array_new; ?>"><a onClick="return display_sectors('<?php echo $alphabet_array_new; ?>','<?php echo get_template_directory_uri(); ?>');"><?php echo $alphabet_array_new; ?></a></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -287,8 +312,8 @@ $urlbasename=basename($_SERVER['PHP_SELF']);
                                             <strong><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></strong>
                                             <p>Search for recruiting agency, executive recruiters or headhunters </p>
                                         </div>
-                                        <a class="btn_hir" onclick="window.location='<?php echo home_url(); ?>/hiring_manager/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
-                                        <a class="btn_job fr" onclick="window.location='<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
+                                        <a class="btn_hir" onClick="window.location='<?php echo home_url(); ?>/hiring_manager/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
+                                        <a class="btn_job fr" onClick="window.location='<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
                                     </div>
                                 </div>
                             </li>
@@ -331,11 +356,12 @@ $flds4 = get_fields(208); ?>
         <br clear="all">
         <center>
         	<input type="hidden" name="hdn_conatct" id="hdn_conatct" value="1" />
-          	<input name="submit_contact" class="btn_cont" value="Contact Now" type="submit" onclick="return CheckHomeContact();" />
+          	<input name="submit_contact" class="btn_cont" value="Contact Now" type="submit" onClick="return CheckHomeContact();" />
         </center>
       </form>
     </div>
   </div>
+ 	<?php  // $base = dirname(__FILE__); include($base."/constantcontact/addOrUpdateContactIndex.php");?> 
   <div class="mngr_left mngr_bdr"> <img src="<?php echo $flds4['home_section_image'];?>" alt="">
     <div class="mngr_left_cont"> <span><?php echo $flds4['home_section_title'];?></span>
       <p><?php echo $flds4['home_section_content'];?></p>
@@ -352,9 +378,9 @@ function valAdd(val){
 $('#HeaderGo').click(function(){
 	var valnew = $("#valaddvalue").val();
 	if(valnew == "Manager"){ 
-	   $('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'/');		   
+	   $('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'.php');		   
 	}else{
-		$('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'/');		   
+		$('#Header_srch').attr('action', '<?php echo bloginfo('home');?>/'+valnew+'.php');		   
 	}
 });
 

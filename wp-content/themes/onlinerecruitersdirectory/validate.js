@@ -64,6 +64,36 @@ function CheckHomeContact(){
 	}	
 }
 
+
+function CheckNewsletterSubscription(){
+	
+	var err = "";
+	var rtn = true;
+	
+	if($("#hcontact_name").val() == ""){
+		err+= "Please enter name.\n";
+		rtn = false;
+	}
+	if($("#email").val() == ""){
+		err+= "Please enter email address.\n";
+		rtn = false;
+	}
+	else if($("#email").val().indexOf('@',0) == -1 || $("#email").val().indexOf('.',0) == -1)
+	{
+		err+= "Please enter valid email address.\n";
+		rtn = false;
+	}
+	if($("#complain_details").val() == ""){
+		err+= "Please enter your message.\n";
+		rtn = false;
+	}
+	if(err ==""){}
+	else{
+		alert(err);
+		return rtn;
+	}	
+}
+
 function checkFrm()
 {
 	var retn = true;
@@ -143,29 +173,37 @@ function checkFrm()
 function chksubscribe()
 {
 	var retn = true;
+	var err = erremail = "";
 	var sname = document.getElementById("sname");
 	var semail = document.getElementById("semail");
 	
 	if(sname.value == "")
 	{
-		document.getElementById("sname_error").innerHTML = "The field is required.";
+		//document.getElementById("sname_error").innerHTML = "The field is required.";
+		err = "err";
 		retn = false;
 	}
 	else{
-		document.getElementById("sname_error").innerHTML = "";
+		//document.getElementById("sname_error").innerHTML = "";
 	}
 	if(semail.value == "")
 	{
-		document.getElementById("semail_error").innerHTML = "The field is required.";
+		err = "err";
+		//document.getElementById("semail_error").innerHTML = "The field is required.";
 		retn = false;
 	}
 	else if(semail.value.indexOf('@',0) == -1 || semail.value.indexOf('.',0) == -1)
 	{
-		document.getElementById("semail_error").innerHTML = "The e-mail address entered is invalid.";
+		err = "err";
+		var erremail = "Enter valid e-mail address.";
+		//document.getElementById("semail_error").innerHTML = "The e-mail address entered is invalid.";
 		retn = false;
 	}
 	else{
-		document.getElementById("semail_error").innerHTML = "";
+		//document.getElementById("semail_error").innerHTML = "";
+	}
+	if(err!= ""){
+		document.getElementById("both_error").innerHTML = "<span style='text-align:center;margin-bottom:15px; float:left;' class='frm_error'>Name and  E-mail both fields are required. "+erremail+"</span>";
 	}
 	return retn;
 }

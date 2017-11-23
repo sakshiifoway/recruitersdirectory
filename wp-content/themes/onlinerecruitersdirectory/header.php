@@ -44,6 +44,8 @@ session_start();
 
 <!------ Banner Script --------------->
 <script type="text/javascript" language="javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-1-8-2.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/source/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 
 
 <script>
@@ -54,6 +56,15 @@ session_start();
   ga('create', 'UA-2202602-1', 'auto');
   ga('require', 'displayfeatures');
   ga('send', 'pageview');
+  
+  
+  $(document).ready(function() {
+	  $("#various1").fancybox({
+			'titlePosition'		: 'inside',
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+		});
+  });
 </script>
 </head>
 

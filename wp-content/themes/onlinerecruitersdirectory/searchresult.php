@@ -56,7 +56,10 @@ if($_REQUEST['hid1'] == "1")
 <h5 style="color:red;">Select Location and Sector to move further.</h5>
 <? $_SESSION['SESSION_MSG'] = "";
 } ?>
-
+<!--<link href="<?php echo get_template_directory_uri();?>/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+<script>window.jQuery || document.write('<script src="<?php echo get_template_directory_uri();?>/js/minified/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="<?php echo get_template_directory_uri();?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
+-->
 <section class="inner_page">
 	<div class="container">
     <ul class="breadcrum">
