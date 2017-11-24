@@ -1,0 +1,110 @@
+a.sign-up
+{
+	margin:0;
+	padding:0;
+	display:block;
+	width: 258px;
+	height: 72px;
+	background-image: url(../constantcontact/sign-up.png)
+}
+a.sign-up:hover
+{
+	background-image: url(../constantcontact/sign-up-on.png)
+}
+div.leftside
+{
+	margin:0;
+	padding:0;
+	float:left;
+	width:410px;
+	text-align: justify;
+}
+a.openjob
+{
+	margin:10px 0 10px 0;
+	padding:0;
+	display:block;
+	width: 187px;
+	height: 27px;
+	background-image: url(../constantcontact/open-jobs.png)
+}
+a.openjob:hover
+{
+	background-image: url(../constantcontact/open-jobs-on.png)
+}
+
+
+
+div.signin
+{
+	background-image: url(../constantcontact/bg.png);
+	background-repeat: no-repeat;
+	width: 224px;
+	height: 212px;
+	margin: 0;
+	padding: 0;
+	float:right;
+}
+div.signin div.form
+{
+	margin: 0 0 0 0;
+	padding: 97px 0 0 0px;
+}
+div.signin div.form input
+{
+	margin: 11px 0 0 20px;
+	padding: 0;
+	width: 180px;
+	height: 20px;
+	line-height: 20px;
+	font-family: arial;
+	font-size: 12px;
+	color: #000;
+	background-color: transparent;
+	border: none;
+}
+div.signin div.signin-button
+{
+	margin: 10px auto;
+	padding: 0;
+	width: 150px;
+	height: 31px;
+	background-image: url(../constantcontact/join-now.png);
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	
+}
+div.signin div.signin-button:hover
+{
+	background-position: 0 -33px;
+}
+div.likegoogle
+{
+	position: fixed;
+	right: 0;
+	top: 0;
+	margin: 50px 10px 0 0;
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
