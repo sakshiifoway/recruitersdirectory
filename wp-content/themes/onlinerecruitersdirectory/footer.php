@@ -42,21 +42,21 @@
             <div class="col-sm-1 fl">
             	<h2>Hiring Manager</h2>
                 <ul>
-                	<li>Look for a recruiter / Head Hunter</li>
-                    <li><strong>Post a request for an Executive Recruiter</strong></li>
-                    <li>Tips for Effectiveness Resume Screening</li>
-                    <li>Recruiting firms - China</li>
+                	<li><a href="<?php bloginfo( 'home' ); ?>/hiring_manager/">Look for a recruiter / Head Hunter</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/post_request_for_recruiter/">Post a request for an Executive Recruiter</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/tips_effectiveness_resume/">Tips for Effectiveness Resume Screening</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/recruiting_firms_china/">Recruiting firms - China</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 fl">
             	<h2>Job seeker</h2>
                 <ul>
-                	<li><a href="#">Look for a Head Hunter / Recruiters</a></li>
-                    <li><a href="#">Executive $100k Job Seekers</a></li>
-                    <li><a href="#">Job Boards & Recruiting services</a></li>
-                    <li><a href="#">Revolution in job search</a></li>
-                    <li><a href="#">Open Jobs - Recruiters Database</a></li>
-                    <li><a href="#">Free review of your resume</a></li>
+                	<li><a href="<?php bloginfo( 'home' ); ?>/job_seeker/">Look for a Head Hunter / Recruiters</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/executive_job_seekers/">Executive $100k Job Seekers</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/our_recommendations/">Job Boards & Recruiting services</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/revelation_in_job_search/">Revolution in job search</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/open-jobs-recruiters-database/">Open Jobs - Recruiters Database</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/free_review/">Free review of your resume</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 fl">
@@ -65,25 +65,29 @@
                 	<li><a href="<?php bloginfo( 'home' ); ?>/articles/">Articles</a></li>
                     <li><a href="<?php bloginfo( 'home' ); ?>/associate/">Association Directory</a></li>
                     <li><a href="<?php bloginfo( 'home' ); ?>/post_request_for_recruiter/">Executive Recruiters</a></li>
-                    <li><a href="#">Service providers</a></li>
-                    <li><a href="#">Job of mine</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/service-providers/">Service providers</a></li>
+                    <li><a href="<?php bloginfo( 'home' ); ?>/job_seeker/">Job of mine</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 fr">
             	<h2>Go social</h2>
                 <ul>
-                	<li><a href="#">Get a widget</a></li>
-                    <li><a href="#">subscribe to our magazine</a></li>
+                	<li><a href="<?php bloginfo( 'home' ); ?>/request_widget/">Get a widget</a></li>
+                    <li><a id="various1" href="#inline1" title="subscribe to our magazine">Subscribe to our magazine</a></li>
                 </ul>
+                <div style="display:none;">
+                    <div id="inline1" style="width:400px;height:auto;overflow:auto;">
+                    	<h3><span style="">NEW</span> Tips & Tools</h3>
+                        <div class="center">Get the job hunting advice & search tips you need to know.<br /></div>
+                        <div><strong><br />One weekly email, infinite information.<br /><br /></strong></div>
+                        <?php  $base = dirname(__FILE__); include($base."/constantcontact/addOrUpdateContactIndex.php");?> 
+                    </div>
+                </div>
                 <div class="share-social">
                 	<div class="share-button">
                     	<a href="#">Share</a>
                         <div class="share-icon">
-                        	<ul>
-                            	<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-gplue-icon.png"/></a></li>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-twitter-icon.png"/></a></li>
-                                <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/share-linkdin-icon.png"/></a></li>
-                            </ul>
+                        	<?php echo do_shortcode('[wp_social_sharing social_options="twitter,googleplus,linkedin" twitter_username="arjun077" linkedin_text="<img src ='.get_template_directory_uri().'/images/share-linkdin-icon.png>" googleplus_text="<img src ='.get_template_directory_uri().'/images/share-gplue-icon.png>" twitter_text="<img src ='.get_template_directory_uri().'/images/share-twitter-icon.png>" icon_order="t,g,l" show_icons="0" before_button_text="" text_position="" social_image="t"]'); ?>
                         </div>
                     </div>
                     <div><a class="follow-button" href="#">Follow</a></div>
@@ -96,6 +100,7 @@
 </footer>
 </div>
 <?php wp_footer(); ?>
-
+<!---- Menu Script ---->
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 </body>
 </html>

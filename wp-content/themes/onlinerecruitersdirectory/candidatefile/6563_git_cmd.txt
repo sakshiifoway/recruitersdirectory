@@ -1,0 +1,11 @@
+start with cd
+
+git status
+
+git add filename/folder
+
+git commit -m 'New product listing page'
+
+git push origin master
+
+git pull origin master

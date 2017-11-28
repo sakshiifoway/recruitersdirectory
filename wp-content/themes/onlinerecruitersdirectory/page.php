@@ -27,7 +27,7 @@ while ( have_posts() ) : the_post();
             <li><?php the_title(); ?></li>
         </ul>
     	<h1><?php the_title(); ?></h1>
-    	<?php the_content(); ?>
+    	<div class="inner_page_content"><?php the_content(); ?></div>
     </div>
 </section>
 <!--- Inner End --->

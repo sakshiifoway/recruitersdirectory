@@ -77,18 +77,22 @@ if($_REQUEST['subscribe1'] == 1)
             <h6>Professional recruiter recommendations based on your needs</h6>
         </div>
         <div class="professional-form">
-        	<?php if($msg == "success") { echo "<div class='SuccessMsgClsTips'>Thank You For Your Request. We Will Contact You Soon.</div>"; } ?>
-		    <?php if($msg == "duplicate") { echo "<div class='ErrorMsgClsTips'>Email Address Already in Use.</div>"; } ?>
+        	
+		   
             <form method="post" name="subscriber" id="subscriber">
             	<ul>
+                
                 <li>
                     <input id="sname" name="sname" type="text" placeholder="* Name" value="<?php echo $_REQUEST['sname']; ?>" />
-                    <span class="frm_error" id="sname_error"></span>
+                    <!---->
                 </li>
                 <li>
                     <input id="semail" name="semail" type="text" placeholder="* Email" />
-                    <span class="frm_error" id="semail_error"></span>
+                    <!--<span class="frm_error" id="semail_error"></span>-->
                 </li>
+                <span class="frm_error" id="both_error"></span>
+                <?php if($msg == "success") { echo "<span class='frm_error' style='text-align:center;margin-bottom:15px; float:left;color:#C6FFC6 !important;'>Thank You For Your Request. We Will Contact You Soon.</span>"; } ?>
+                 <?php if($msg == "duplicate") { echo "<span class='frm_error' style='text-align:center;margin-bottom:15px; float:left;'>Email Address Already in Use.</span>"; } ?>
                 <li class="full-width">
                     <input type="hidden" name="subscribe1" value="1" />
                     <input name="submit" type="submit" value="Contact Now" onclick="return chksubscribe();" />

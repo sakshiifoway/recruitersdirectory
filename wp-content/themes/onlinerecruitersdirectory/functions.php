@@ -650,6 +650,18 @@ function partnerlogo_posttype() {
 // Hooking up our function to theme setup
 add_action( 'init', 'partnerlogo_posttype' );
 
+function excerptCommas($txt,$limit) {
+  $excerpt = explode(',', $txt, $limit);
+  if (count($excerpt)>=$limit) {
+    array_pop($excerpt);
+    $excerpt = implode(",",$excerpt).'...';
+  } else {
+    $excerpt = implode(",",$excerpt);
+  }	
+  $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+  return $excerpt;
+}
+
 
 function GetRecruiterState($states,$rstate,$rid)
 {	
@@ -674,7 +686,13 @@ function GetRecruiterState($states,$rstate,$rid)
 			$stnm.= GetOneValue("state","id",$stt,"name").", ";
 		}
 	}
-	return substr($stnm,0,-2);
+	
+	//return substr($stnm,0,-2);
+	if(strlen($stnm)>25){
+		return $stnm = excerptCommas($stnm,25);
+	}else{
+		return substr($stnm,0,-2);
+	}
 	
 }
 
@@ -707,4 +725,82 @@ function get_excerpt_by_id($post_id,$ln){
     $the_excerpt = $the_excerpt;
 
     return $the_excerpt;
+}
+
+function get_title_by_id($post_id,$ln){
+	// $the_excerpt ="";
+    $the_post = get_post($post_id); //Gets post ID
+    $the_title = trim($the_post->post_title); //Gets post_content to be used as a basis for the excerpt
+    $title_length = $ln; //Sets excerpt length by word count
+    $words = explode(' ', $the_title, $title_length + 1);
+
+    if(count($words) > $title_length) :
+        array_pop($words);
+        array_push($words, '…');
+        $the_title = implode(' ', $words);
+    endif;
+
+    $the_title = $the_title;
+
+    return $the_title;
+}
+
+function SendHTMLMail($to1,$subject2,$mailcontent1,$from1,$fromname="",$cc="")
+{
+	$limite = "_parties_".md5 (uniqid (rand()));
+	$headers = "From: $fromname <$from1>\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+	
+	
+	if($cc)
+		$headers .= "Cc: $cc\r\n";
+
+	if(@mail($to1,$subject2,$mailcontent1,$headers))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+function GetRecruiterAddress($add1,$add2,$city,$state,$country,$zip)
+{
+	$address = $add1;
+	if($add2){$address.=", ".$add2;}
+	if($city){$address.=", ".$city;}
+	if($zip){$address.=" - ".$zip;}
+	//if($state){$address.=", ".GetOneValue("state","id",$state,"name");}
+	if($country){$address.=", ".GetOneValue("country","id",$country,"name");}
+	
+	
+	return $address;
+	
+}
+
+function GetRecruiterStates($state)
+{	
+	$arr_st = explode(',',$state);
+	foreach($arr_st as $st){
+		$stateNm.=GetOneValue("state","id",$st,"name").", ";
+	}
+	
+	
+	return substr($stateNm,0,-2);
+	
+}
+
+
+function GetRecruiterCategories($category)
+{	
+	$arr_cat = explode(',',$category);
+	foreach($arr_cat as $cat){
+		$CatNm.=GetOneValue("category","categoryid",$cat,"categoryname").", ";
+	}
+	
+	
+	return substr($CatNm,0,-2);
+	
 }

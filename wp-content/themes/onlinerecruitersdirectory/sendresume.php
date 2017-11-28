@@ -245,7 +245,7 @@ else
                         </li>
                         <li class="full-width"><textarea name="message" id="message" placeholder="* Comments" class="comment_box"></textarea></li>
                     </ul>
-                      <input type="submit" name="submit" id="submit" value="Next" onClick="return chk_SendResume();" class="sendResumeBtn">  
+                      <input type="submit" name="submit" id="submit" value="Submit" onClick="return chk_SendResume();" class="sendResumeBtn">  
                 </div>
                 
             </div>   

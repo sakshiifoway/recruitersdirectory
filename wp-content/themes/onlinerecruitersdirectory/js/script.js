@@ -22,7 +22,7 @@ $(window).bind('resize orientationchange', function() {
 });
 
 var adjustMenu = function() {
-	if (ww < 769) {
+	if (ww < 1023) {
 		$(".toggleMenu").css("display", "inline-block");
 		if (!$(".toggleMenu").hasClass("active")) {
 			$(".nav").hide();
@@ -41,7 +41,7 @@ var adjustMenu = function() {
 			$(this).parent("li").toggleClass("hover");
 		});*/
 	} 
-	else if (ww >= 769) {
+	else if (ww >= 1023) {
 		$(".toggleMenu").css("display", "none");
 		$(".nav").show();
 		$(".nav li").removeClass("hover");

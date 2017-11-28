@@ -88,73 +88,74 @@ history.pushState('', document.title, '<?php echo bloginfo('home'); ?>');
 }
 </style>
 <?php }?>
-<div class="main-banner"> <img src="<?php echo $bannerImg;?>"/>
-  <div class="banner-caption">
-    <div class="container">
-      <div class="caption-inner"> <?php echo $bannerTxt;?> </div>
+<div class="main-banner">
+<img src="<?php echo $bannerImg;?>"/>
+<div class="banner-caption">
+<div class="container">
+  <div class="caption-inner"> <?php echo $bannerTxt;?> </div>
+</div>
+<div class="search-part">
+<div class="container">
+<div class="caption-inner">
+<div class="search-title">Search for a Recruiting firm</div>
+<div class="search-form">
+<form name="Header_srch" id="Header_srch" method="post" action="">
+<ul>
+  <li>
+    <div class="select-fildset">
+      <select name="sid" id="sid">
+        <option value="">STATE</option>
+        <?php $hdr_states = $wpdb->get_results("SELECT * from state order by name ASC");				
+				foreach ($hdr_states as $hdr_st) {  ?>
+        <option value="<?php echo $hdr_st->id;?>"><?php echo trim(stripslashes($hdr_st->name)); ?></option>
+        <?php } ?>
+      </select>
     </div>
-    <div class="search-part">
-      <div class="container">
-        <div class="caption-inner">
-          <div class="search-title">Search for a Recruiting firm</div>
-          <div class="search-form">
-          <form name="Header_srch" id="Header_srch" method="post" action="">
-            <ul>
-              <li>
-                <div class="select-fildset">
-                <select name="sid" id="sid">
-                <option value="">STATE</option>
-                <?php $hdr_states = $wpdb->get_results("SELECT * from state order by name ASC");				
-				foreach ($hdr_states as $hdr_st) {  ?>                  
-	                <option value="<?php echo $hdr_st->id;?>"><?php echo trim(stripslashes($hdr_st->name)); ?></option>
-                <?php } ?>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div class="select-fildset">
-                 <select name="cid" id="cid">
-                <option value="">SECTOR</option>
-                <?php $hdr_cat = $wpdb->get_results("SELECT * from category order by categoryname ASC");				
-				foreach ($hdr_cat as $hdr_ct) {  ?>                  
-	                <option value="<?php echo $hdr_ct->categoryid;?>"><?php echo trim(stripslashes($hdr_ct->categoryname)); ?></option>
-                <?php } ?>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div class="checkbox-part">
-                  <div class="hiring-manager-check">
-                    <div class="control-group">
-                      <label class="control control--checkbox">
-                      <img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png"/>I'M A HIRING MANAGER
-                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="Manager" checked="checked" onClick="valAdd('hiring_manager');"/>
-                      <div class="control__indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="job-seeker-check">
-                    <div class="control-group">
-                      <label class="control control--checkbox">
-                      <img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png"/>I'M A JOB SEEKER
-                      <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="job-seeker" onClick="valAdd('job_seeker');"/>
-                      <div class="control__indicator"></div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-              	<input type="hidden" name="valaddvalue" id="valaddvalue" value="hiring_manager" />
-                <button value="Go" id="HeaderGo" >Go<img src="<?php echo get_template_directory_uri(); ?>/images/go-arrow.png"/></button>
-              </li>
-            </ul>
-          </button>
-          </div>
+  </li>
+  <li>
+    <div class="select-fildset">
+      <select name="cid" id="cid">
+        <option value="">SECTOR</option>
+        <?php $hdr_cat = $wpdb->get_results("SELECT * from category order by categoryname ASC");				
+				foreach ($hdr_cat as $hdr_ct) {  ?>
+        <option value="<?php echo $hdr_ct->categoryid;?>"><?php echo trim(stripslashes($hdr_ct->categoryname)); ?></option>
+        <?php } ?>
+      </select>
+    </div>
+  </li>
+  <li>
+    <div class="checkbox-part">
+      <div class="hiring-manager-check">
+        <div class="control-group">
+          <label class="control control--checkbox">
+          <img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png"/>I'M A HIRING MANAGER
+          <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="Manager" checked="checked" onClick="valAdd('hiring_manager');"/>
+          <div class="control__indicator"></div>
+          </label>
+        </div>
+      </div>
+      <div class="job-seeker-check">
+        <div class="control-group">
+          <label class="control control--checkbox">
+          <img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png"/>I'M A JOB SEEKER
+          <input type="radio" name="hdr_srch_type" id="hdr_srch_type" value="job-seeker" onClick="valAdd('job_seeker');"/>
+          <div class="control__indicator"></div>
+          </label>
         </div>
       </div>
     </div>
-  </div>
+  </li>
+  <li>
+    <input type="hidden" name="valaddvalue" id="valaddvalue" value="hiring_manager" />
+    <button value="Go" id="HeaderGo" >Go<img src="<?php echo get_template_directory_uri(); ?>/images/go-arrow.png"/></button>
+  </li>
+</ul>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <!--- Banner End ---> 
 
@@ -244,131 +245,126 @@ history.pushState('', document.title, '<?php echo bloginfo('home'); ?>');
 </section>
 <?php // print_r($recent_posts); ?>
 <section class="map-main">
-  	<div class="container">
-        <div class="col-sm-1 fl">
-            <div class="map-main-part">
-                <h2>Select a state</h2>
-                <h5>where you’d like to find<br>
-                  an executive recruiters/head hunters search firm</h5>
-                <div class="map_main">
-                    <ul>
-						<?php 
+  <div class="container">
+    <div class="col-sm-1 fl">
+      <div class="map-main-part">
+        <h2>Select a state</h2>
+        <h5>where you’d like to find<br>
+          an executive recruiters/head hunters search firm</h5>
+        <div class="map_main">
+          <ul>
+            <?php 
                             $state_query = $wpdb->get_results("SELECT * from state where map_slug != '' order by name ASC");
                             foreach ($state_query as $state_query_new) {
                         ?>
-                        <li class="<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" onClick="return show_maptooltip('<?php echo trim(stripslashes($state_query_new->map_slug)); ?>');">
-                            <div class="map-tooltip" id="map_tooltipID_<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" style="display:none">
-                                <div class="tooltip-inner">
-                                  	<div class="pop_title"> <strong><?php echo trim(stripslashes($state_query_new->name)); ?></strong>
-                                    	<p>Search for recuiting agency. executive recuiters or headhunters</p>
-                                  	</div>
-                                  	<?php /*?><a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo $state_query_new->state_alias; ?>">Hiring manager1</a>
+            <li class="<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" onClick="return show_maptooltip('<?php echo trim(stripslashes($state_query_new->map_slug)); ?>');">
+              <div class="map-tooltip" id="map_tooltipID_<?php echo trim(stripslashes($state_query_new->map_slug)); ?>" style="display:none">
+                <div class="tooltip-inner">
+                  <div class="pop_title"> <strong><?php echo trim(stripslashes($state_query_new->name)); ?></strong>
+                    <p>Search for recuiting agency. executive recuiters or headhunters</p>
+                  </div>
+                  <?php /*?><a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo $state_query_new->state_alias; ?>">Hiring manager1</a>
                                   	<a class="btn_hir" href="<?php echo home_url(); ?>/job_seeker/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo $state_query_new->state_alias; ?>">Job seeker1</a><?php */?>
-                                    <a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
-                                    <a class="btn_job fr" href="<?php echo home_url(); ?>/job_seeker/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
-                                </div>
-                            </div>
-                        </li>
-                    	<?php } ?>
-                    </ul>
-                </div>
-            </div>
+                  <a class="btn_hir" href="<?php echo home_url(); ?>/hiring_manager/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a> <a class="btn_job fr" href="<?php echo home_url(); ?>/job_seeker/?sid=<?php echo $state_query_new->id; ?>&location=<?php echo trim(stripslashes($state_query_new->state_alias)); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a> </div>
+              </div>
+            </li>
+            <?php } ?>
+          </ul>
         </div>
-        <div class="col-sm-2 fr">
-            <div class="find-sector-part">
-                <h5>Find a Headhunter or a Recruiter by Sector</h5>
-                <div class="find-sector">
-                    <?php $Sector_query = $wpdb->get_results("SELECT * from category order by categoryname ASC"); ?> 
-                    <select name="sector_dropdown" id="sector_dropdown" onChange="return redirectToJobSeeker(this.value);">
-                        <option value="">SELECT SECTOR</option>
-                        <?php if(count($Sector_query)>0) {
+      </div>
+    </div>
+    <div class="col-sm-2 fr">
+      <div class="find-sector-part">
+        <h5>Find a Headhunter or a Recruiter by Sector</h5>
+        <div class="find-sector">
+          <?php $Sector_query = $wpdb->get_results("SELECT * from category order by categoryname ASC"); ?>
+          <select name="sector_dropdown" id="sector_dropdown" onChange="return redirectToJobSeeker(this.value);">
+            <option value="">SELECT SECTOR</option>
+            <?php if(count($Sector_query)>0) {
                                 foreach ($Sector_query as $Sector_query_new) { ?>
-                        <option value="<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_query_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_query_new->category_slug)); ?>"><?php echo trim(stripslashes($Sector_query_new->categoryname)); ?></option>
-                        <?php } } ?>
-                    </select>
-                </div>
-                <div class="find-character-part">
-                    <div class="alfabet-character">
-                        <ul>
-                            <?php $alphabet_array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+            <option value="<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_query_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_query_new->category_slug)); ?>"><?php echo trim(stripslashes($Sector_query_new->categoryname)); ?></option>
+            <?php } } ?>
+          </select>
+        </div>
+        <div class="find-character-part">
+          <div class="alfabet-character">
+            <ul>
+              <?php $alphabet_array = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
                                 foreach($alphabet_array as $alphabet_array_new)
                                 {
                                     if($alphabet_array_new == 'a') { $alpha_selcls = "active"; } else { $alpha_selcls = ""; }
                             ?>
-                            <li class="alphabet_li <?php echo $alpha_selcls; ?>" id="alfabet-character-li-<?php echo $alphabet_array_new; ?>"><a onClick="return display_sectors('<?php echo $alphabet_array_new; ?>','<?php echo get_template_directory_uri(); ?>');"><?php echo $alphabet_array_new; ?></a></li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                    <div class="sector-list">
-                        <ul id="sector_data">
-                            <?php $cval = 'a'; //echo "SELECT * from category where categoryname LIKE '$cval%' order by categoryname ASC";
+              <li class="alphabet_li <?php echo $alpha_selcls; ?>" id="alfabet-character-li-<?php echo $alphabet_array_new; ?>"><a onClick="return display_sectors('<?php echo $alphabet_array_new; ?>','<?php echo get_template_directory_uri(); ?>');"><?php echo $alphabet_array_new; ?></a></li>
+              <?php } ?>
+            </ul>
+          </div>
+          <div class="sector-list">
+            <ul id="sector_data">
+              <?php $cval = 'a'; //echo "SELECT * from category where categoryname LIKE '$cval%' order by categoryname ASC";
                             $Sector_listquery = $wpdb->get_results("SELECT * from category where categoryname LIKE '$cval%' order by categoryname ASC"); ?>
-                            <?php if(count($Sector_listquery)>0) {
+              <?php if(count($Sector_listquery)>0) {
                                     foreach ($Sector_listquery as $Sector_listquery_new) { ?>
-                            <li><a><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></a>
-                                <div class="tooltip-main">
-                                    <div class="tooltip-inner">
-                                        <div class="pop_title">
-                                            <strong><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></strong>
-                                            <p>Search for recruiting agency, executive recruiters or headhunters </p>
-                                        </div>
-                                        <a class="btn_hir" onClick="window.location='<?php echo home_url(); ?>/hiring_manager/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a>
-                                        <a class="btn_job fr" onClick="window.location='<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php } } ?>
-                        </ul>
+              <li><a><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></a>
+                <div class="tooltip-main">
+                  <div class="tooltip-inner">
+                    <div class="pop_title"> <strong><?php echo trim(stripslashes($Sector_listquery_new->categoryname)); ?></strong>
+                      <p>Search for recruiting agency, executive recruiters or headhunters </p>
                     </div>
+                    <a class="btn_hir" onClick="window.location='<?php echo home_url(); ?>/hiring_manager/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/hiring-manager-checkicon.png" alt="">Hiring manager</a> <a class="btn_job fr" onClick="window.location='<?php echo home_url(); ?>/job_seeker/?cid=<?php echo $Sector_listquery_new->categoryid; ?>&sector=<?php echo trim(stripslashes($Sector_listquery_new->category_slug)); ?>'"><img src="<?php echo get_template_directory_uri(); ?>/images/job-seeker-checkicon.png" alt="">Job seeker</a> </div>
                 </div>
-            </div>
+              </li>
+              <?php } } ?>
+            </ul>
+          </div>
         </div>
-  	</div>
+      </div>
+    </div>
+  </div>
 </section>
 <?php $flds3 = get_fields(227);
 $flds4 = get_fields(208); ?>
 <section class="hiri-manager-main">
-  <div class="mngr_left"> <img src="<?php echo $flds3['home_section_image'];?>" alt="">
-    <div class="mngr_left_cont"> <span><?php echo $flds3['home_section_title'];?></span>
-      <p><?php echo $flds3['home_section_content'];?></p>
-      <a class="rd_more" href="<?php echo get_the_permalink(227);?>">Read More</a> </div>
+<div class="mngr_left"> <img src="<?php echo $flds3['home_section_image'];?>" alt="">
+  <div class="mngr_left_cont"> <span><?php echo $flds3['home_section_title'];?></span>
+    <p><?php echo $flds3['home_section_content'];?></p>
+    <a class="rd_more" href="<?php echo get_the_permalink(227);?>">Read More</a> </div>
+</div>
+<div class="mngr_mid">
+<div class="tp_title">
+  <h2>Hiring manager</h2>
+  <p>Professional recruiter recommendations based on your needs - at no charge to you!</p>
+</div>
+<div class="frm_line">Get started by filling out the contact form below. We’ll follow up with you the same business day.</div>
+<div class="mngr_form">
+<form name="homeContactFrm" id="homeContactFrm" method="post">
+  <div class="fr_fild">
+    <input type="text" class="input_fld" name="hcontact_name" id="hcontact_name" placeholder="NAME*" >
   </div>
-  <div class="mngr_mid">
-    <div class="tp_title">
-      <h2>Hiring manager</h2>
-      <p>Professional recruiter recommendations based on your needs - at no charge to you!</p>
-    </div>
-    <div class="frm_line">Get started by filling out the contact form below. We’ll follow up with you the same business day.</div>
-    <div class="mngr_form">
-      <form name="homeContactFrm" id="homeContactFrm" method="post">
-        <div class="fr_fild">
-          <input type="text" class="input_fld" name="hcontact_name" id="hcontact_name" placeholder="NAME*" >
-        </div>
-        <div class="fr_fild">
-          <input type="text" class="input_fld" name="phone" id="phone" placeholder="PHONE" >
-        </div>
-        <div class="fr_fild">
-          <input type="text" class="input_fld" name="email" id="email" placeholder="EMAIL*" >
-        </div> 
-        <div class="fr_fild">
-          <textarea name="complain_details" id="complain_details" placeholder="YOUR MESSAGE*"></textarea>
-        </div> 
-        <br clear="all">
-        <center>
-        	<input type="hidden" name="hdn_conatct" id="hdn_conatct" value="1" />
-          	<input name="submit_contact" class="btn_cont" value="Contact Now" type="submit" onClick="return CheckHomeContact();" />
-        </center>
-      </form>
-    </div>
+  <div class="fr_fild">
+    <input type="text" class="input_fld" name="phone" id="phone" placeholder="PHONE" >
   </div>
- 	<?php  // $base = dirname(__FILE__); include($base."/constantcontact/addOrUpdateContactIndex.php");?> 
-  <div class="mngr_left mngr_bdr"> <img src="<?php echo $flds4['home_section_image'];?>" alt="">
-    <div class="mngr_left_cont"> <span><?php echo $flds4['home_section_title'];?></span>
-      <p><?php echo $flds4['home_section_content'];?></p>
-      <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a> </div>
+  <div class="fr_fild">
+    <input type="text" class="input_fld" name="email" id="email" placeholder="EMAIL*" >
   </div>
+  <div class="fr_fild">
+    <textarea name="complain_details" id="complain_details" placeholder="YOUR MESSAGE*"></textarea>
+  </div>
+  <br clear="all">
+  <center>
+    <input type="hidden" name="hdn_conatct" id="hdn_conatct" value="1" />
+    <input name="submit_contact" class="btn_cont" value="Contact Now" type="submit" onClick="return CheckHomeContact();" />
+  </center>
+</form>
+</div>
+</div>
+<?php  // $base = dirname(__FILE__); include($base."/constantcontact/addOrUpdateContactIndex.php");?>
+<div class="mngr_left mngr_bdr"> <img src="<?php echo $flds4['home_section_image'];?>" alt="">
+  <div class="mngr_left_cont"> <span><?php echo $flds4['home_section_title'];?></span>
+    <p><?php echo $flds4['home_section_content'];?></p>
+    <a class="rd_more" href="<?php echo get_the_permalink(208);?>">Read More</a> </div>
+</div>
 </section>
-<!--- Section End --->
+<!--- Section End ---> 
 
 <script>
 function valAdd(val){

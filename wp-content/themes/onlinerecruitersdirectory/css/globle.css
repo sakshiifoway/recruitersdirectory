@@ -556,16 +556,16 @@ footer .copyright span img{display:inline-block; padding-left:4px; vertical-alig
 .search-center .search-full .select-list .content{overflow:auto; position:relative; padding:0px; margin:0px; width:100%; height:400px;}
 .chang-step-part{ width:100%; float:left; margin:30px 0px; padding:0px 200px;}
 .chang-step-part .prev-step{ width:auto; float:left; font-size:14px; font-weight:400; color:#0077a1; max-height:40px; margin:0px; padding:0px;}
-.chang-step-part .prev-step input[type="button"]{text-indent:12px; font-weight:700; color:#0077a1; font-size:30px; font-style:italic; background-color:inherit; border:none; outline:none; margin:0px; padding:0px; cursor:pointer; appearance:normal; -webkit-appearance:normal;}
+.chang-step-part .prev-step input[type="button"]{text-indent:12px; font-weight:700; color:#0077a1; font-size:30px; font-style:italic; background-color:inherit; border:none; outline:none; margin:0px; padding:0px; cursor:pointer; appearance:normal; -webkit-appearance:normal; vertical-align:top;}
 .chang-step-part .prev-step input[type="button"]:hover{ color:#ff8355;}
-.chang-step-part .prev-step .fa{ display:inline-block; text-align:left; font-size:24px; color:#555; margin:0px; padding:0px;}
+.chang-step-part .prev-step .fa{ display:inline-block; text-align:left; font-size:24px; color:#555; margin:0px; padding:7px 0px 0px 0px;}
 
 
 .chang-step-part .next-step{ width:auto; float:right; font-size:14px; font-weight:400; color:#0077a1; max-height:58px; margin:0px; padding:0px;}
-.chang-step-part .next-step input[type="submit"]{ display:inline-block; text-indent:15px; font-weight:700; color:#0077a1; font-size:30px; font-style:italic; background-color:inherit; border:none; outline:none; margin:0px; padding:0px 4px 0px 0px; cursor:pointer; appearance:normal; -webkit-appearance:normal;}
+.chang-step-part .next-step input[type="submit"]{ display:inline-block; text-indent:15px; font-weight:700; color:#0077a1; font-size:30px; font-style:italic; background-color:inherit; border:none; outline:none; margin:0px; padding:0px 4px 0px 0px; cursor:pointer; appearance:normal; -webkit-appearance:normal; vertical-align:top;}
 .chang-step-part .next-step input[type="submit"]:hover{ color:#ff8355;}
 .chang-step-part .next-step .fa{ display:inline-block; text-align:right; font-size:24px; color:#555; margin:0px; padding:0px 0px 0px 14px;}
-.chang-step-part .next-step .fa.pad-0{ padding-top:12px;}
+.chang-step-part .next-step .fa.pad-0{ padding-top:9px;}
 
 .search-center .search-full h6{ width:100%; float:left; font-size:18px; color:#0077a1; font-weight:600; letter-spacing:1px; text-align:center; margin:0px 0px 8px 0px; padding:0px;}
 .search-center .search-full .recruiter-box{ width:100%; float:left; border:1px solid #afdae9; margin:0px; padding:0px;}
@@ -576,16 +576,16 @@ footer .copyright span img{display:inline-block; padding-left:4px; vertical-alig
 
 .search-center .search-full table { width:100%; float:left; border-collapse: collapse; margin:0px; padding:0px;}	
 .search-center .search-full td, th {border-bottom:1px solid #afdae9; padding:10px; text-align:left; font-size:13px; font-weight:400;}
-.search-center .search-full td:nth-child(1){ width:50%;}
-.search-center .search-full td:nth-child(2n){ width:31%;}
-.search-center .search-full td:nth-child(3n){ width:19%;}
+.search-center .search-full td:nth-child(1){ width:400px;}
+.search-center .search-full td:nth-child(2n){ width:150px;}
+.search-center .search-full td:nth-child(3n){ width:150px;}
 .search-center .search-full td a{ color:#555;}
 .search-center .search-full td a:hover{ color:#ff8355;}
 .search-center .search-full td input[type="checkbox"]{ width:14px; float:left; height:14px; margin:2px 6px 0px 0px; padding:0px;}
 .search-center .search-full th {background:#90c7da; color:#fff; font-weight: bold; text-transform:uppercase; padding:10px 10px; border-bottom:0px !important;}
-.search-center .search-full th:nth-child(1){ width:50%;}
-.search-center .search-full th:nth-child(2n){ width:29%;}
-.search-center .search-full th:nth-child(3n){ width:21%;}
+.search-center .search-full th:nth-child(1){ width:400px;}
+.search-center .search-full th:nth-child(2n){ width:150px;}
+.search-center .search-full th:nth-child(3n){ width:150px;}
 
 .step3-infor-contanct{ width:100%; float:left; margin:20px 0px 0px 0px; padding:0px;}
 .step3-infor-contanct ul{ width:100%; float:left; margin:0px; padding:0px;}
